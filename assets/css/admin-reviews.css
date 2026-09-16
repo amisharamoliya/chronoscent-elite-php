@@ -1,0 +1,4 @@
+.sidebar { min-height: 100vh; background: #212529; color: white; padding-top: 20px; }
+        .sidebar a { color: #ccc; text-decoration: none; display: block; padding: 10px 20px; }
+        .sidebar a:hover, .sidebar a.active { background: #d4af37; color: #111; }
+        .main-content { padding: 30px; }

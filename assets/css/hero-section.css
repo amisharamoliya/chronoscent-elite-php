@@ -1,0 +1,4 @@
+/* Make the carousel fade transition much faster */
+    .carousel-item {
+        transition: opacity 0.3s ease-in-out !important;
+    }

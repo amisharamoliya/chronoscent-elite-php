@@ -1,0 +1,249 @@
+/* =========================================
+   CHRONOSCENT ELITE - MAIN CSS FILE
+   (Student Level Easy Version)
+   ========================================= */
+
+/* 
+  1. CSS Variables (:root) 
+  Ahna thi aapne color ek j jagya thi badli shakiye, jethi aakhi website ma same theme rahe.
+*/
+:root {
+  --primary-theme: #729ba8; /* Elegant Dusty Cloud Blue */
+  --secondary-theme: #5a808c; /* Darker Cloud Blue for hover */
+  --bg-color: #f4f9fc; /* Soft, airy sky-tinted white */
+  --card-bg: #ffffff; /* White Cards for contrast */
+  --border-color: #dbeafe; /* Soft light blue borders */
+}
+
+/* 
+  2. Main Body Style
+  Ahi general website no font, background color ane text color set karyo che.
+*/
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-color);
+  color: #212529;
+
+  /* Aa background ma jheni (subtle) pattern banave che jethi ek premium look male */
+  background-image: 
+    radial-gradient(rgba(114, 155, 168, 0.05) 1px, transparent 1px),
+    radial-gradient(rgba(114, 155, 168, 0.05) 1px, transparent 1px);
+  background-position: 0 0, 25px 25px;
+  background-size: 50px 50px;
+}
+
+/* 
+  3. Navbar (Top Menu)
+  Navigation bar no background, blur effect ane shadow.
+*/
+.navbar-custom {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px); /* Background blur effect */
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.navbar-custom .nav-link, 
+.navbar-custom .navbar-brand {
+  color: #212529 !important;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.3s ease; /* Hover effect smooth thava mate */
+}
+
+.navbar-custom .nav-link:hover {
+  color: var(--primary-theme) !important;
+  text-shadow: none;
+}
+
+/* 
+  4. Hero Section (Home page no moto photo)
+*/
+.hero-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), 
+              url('https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?auto=format&fit=crop&w=1920&q=80') center/cover;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.hero-section h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--primary-theme);
+  text-transform: uppercase;
+}
+
+/* 
+  5. Product Cards
+  Product display thaya che ema background ane hover effect.
+*/
+.card, 
+.product-card {
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.product-card {
+  overflow: hidden;
+}
+
+/* Jyare card upar mouse aave tyare thodo upper aave (Hover Effect) */
+.card:hover, 
+.product-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary-theme) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(192, 192, 192, 0.15);
+}
+
+/* Product Image */
+.product-img {
+  height: 280px;
+  object-fit: contain; /* Image proper fit thase */
+  width: 100%;
+  padding: 15px;
+  background-color: #ffffff; 
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Product Title and Price */
+.product-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #212529 !important;
+  text-decoration: none;
+}
+
+.product-title:hover {
+  color: var(--primary-theme) !important;
+}
+
+.price {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary-theme);
+}
+
+.original-price {
+  text-decoration: line-through; /* Juna price par line aavse */
+  color: #6c757d;
+  font-size: 0.95rem;
+  margin-right: 8px;
+}
+
+/* 
+  6. Buttons
+  Primary ane Outline buttons ni design
+*/
+.btn-theme {
+  background-color: var(--primary-theme);
+  color: #ffffff;
+  font-weight: 600;
+  border: 1px solid var(--primary-theme);
+  border-radius: 25px; /* Gol akar (Pill shape) mate */
+  padding: 10px 25px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.btn-theme:hover {
+  background-color: var(--secondary-theme);
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(114, 155, 168, 0.3);
+}
+
+.btn-outline-theme {
+  background-color: transparent;
+  border: 1px solid var(--primary-theme);
+  color: var(--primary-theme);
+  font-weight: 600;
+  border-radius: 25px;
+  padding: 10px 25px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-theme:hover {
+  background-color: var(--primary-theme);
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(114, 155, 168, 0.3);
+}
+
+/* 
+  7. Form Controls (Inputs, Select)
+  Login/Register form mate
+*/
+.form-control, 
+.form-select {
+  background-color: #ffffff !important;
+  border: 1px solid #ced4da !important;
+  color: #212529 !important;
+}
+
+.form-control:focus, 
+.form-select:focus {
+  border-color: var(--primary-theme) !important;
+  box-shadow: 0 0 0 0.25rem rgba(114, 155, 168, 0.25) !important;
+}
+
+/* 
+  8. Utilities & Footer
+*/
+.text-theme {
+  color: var(--primary-theme) !important;
+}
+
+footer {
+  background-color: var(--card-bg);
+  border-top: 1px solid var(--border-color);
+  padding: 60px 0 30px;
+  margin-top: 60px;
+  color: #212529;
+}
+
+footer a {
+  color: #6c757d;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+footer a:hover {
+  color: var(--primary-theme);
+  padding-left: 5px; /* Mouse over thay tyare text thodu jamni baaju khase */
+}
+
+.footer-heading {
+  color: var(--primary-theme);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+}
+
+/* 
+  9. Badges
+  Discount batava mate badge
+*/
+.discount-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: var(--bg-color);
+  border: 1px solid var(--primary-theme);
+  color: var(--primary-theme);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}

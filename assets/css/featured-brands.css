@@ -1,0 +1,6 @@
+.brand-card:hover {
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    border-color: #cbd5e1 !important;
+    background-color: white !important;
+}
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap');

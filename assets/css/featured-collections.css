@@ -1,0 +1,11 @@
+/* Hover effects for category cards */
+.group:hover div {
+    border-color: var(--primary-theme) !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+.group:hover img {
+    transform: scale(1.05);
+}
+.group:hover h4 {
+    color: var(--primary-theme) !important;
+}

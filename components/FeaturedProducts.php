@@ -46,7 +46,7 @@
                     <div class="card-body text-center px-0 mt-2">
                         <h5 class="card-title text-truncate mb-1" style="font-family: 'Playfair Display', serif; color: #2c3e50; font-weight: 600;"><?= htmlspecialchars($item['name']) ?></h5>
                         <p class="card-text text-theme fw-bold mb-3" style="font-size: 1.1rem;">$<?= number_format($item['price'], 2) ?></p>
-                        <form action="cart.php" method="POST" class="w-100" data-ajax="false">
+                        <form action="cart.php" method="POST" class="w-100 px-3" data-ajax="false">
                             <input type="hidden" name="action" value="add">
                             <input type="hidden" name="product_id" value="<?= $item['id'] ?>">
                             <input type="hidden" name="quantity" value="1">

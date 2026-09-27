@@ -5,9 +5,17 @@ $q = isset($_GET['q']) ? trim($_GET['q']) : '';
 $products = [];
 
 if ($q !== '') {
+    $searchCategory = $q;
+    if (strtolower($q) === 'watches' || strtolower($q) === 'watch') {
+        $searchCategory = 'Watch';
+    } elseif (strtolower($q) === 'perfumes' || strtolower($q) === 'perfume') {
+        $searchCategory = 'Perfume';
+    }
+
     $stmt = $pdo->prepare("SELECT * FROM products WHERE name LIKE ? OR brand LIKE ? OR category LIKE ?");
     $searchTerm = "%$q%";
-    $stmt->execute([$searchTerm, $searchTerm, $searchTerm]);
+    $categoryTerm = "%$searchCategory%";
+    $stmt->execute([$searchTerm, $searchTerm, $categoryTerm]);
     $products = $stmt->fetchAll();
 }
 ?>

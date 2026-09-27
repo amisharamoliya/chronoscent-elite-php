@@ -49,27 +49,27 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `products` (`name`, `brand`, `category`, `description`, `price`, `discount_price`, `stock`, `image`, `rating`) VALUES
-('Submariner Date', 'Rolex', 'Watch', 'The reference among divers watches.', 10500.00, 9999.00, 5, 'assets/images/watches/1.jpg', 4.9),
-('Seamaster Diver 300M', 'Omega', 'Watch', 'A legendary dive watch since 1993.', 5200.00, 4800.00, 8, 'assets/images/watches/2.jpg', 4.8),
-('Nautilus', 'Patek Philippe', 'Watch', 'Elegant sports watch.', 35000.00, NULL, 2, 'assets/images/watches/3.jpg', 5.0),
-('Royal Oak', 'Audemars Piguet', 'Watch', 'The iconic luxury sports watch.', 28000.00, NULL, 3, 'assets/images/watches/4.jpg', 4.9),
-('Carrera Calibre Heuer 02', 'TAG Heuer', 'Watch', 'Racing inspired chronograph.', 5800.00, 5400.00, 10, 'assets/images/watches/5.jpg', 4.5),
-('Navitimer', 'Breitling', 'Watch', 'Aviation chronograph.', 8200.00, 7800.00, 6, 'assets/images/watches/6.jpg', 4.7),
-('Luminor Marina', 'Panerai', 'Watch', 'Distinctive Italian design.', 7500.00, 7000.00, 7, 'assets/images/watches/7.jpg', 4.6),
-('Big Bang', 'Hublot', 'Watch', 'The art of fusion.', 15000.00, 14000.00, 4, 'assets/images/watches/8.jpg', 4.4),
-('Oyster Perpetual 41', 'Rolex', 'Watch', 'Classic and timeless.', 6100.00, NULL, 12, 'assets/images/watches/9.jpg', 4.8),
-('Speedmaster Moonwatch', 'Omega', 'Watch', 'The first watch on the moon.', 6500.00, 6200.00, 9, 'assets/images/watches/10.jpg', 4.9),
+('Submariner Date Watch', 'Rolex', 'Watch', 'The reference among divers watches.', 10500.00, 9999.00, 5, 'assets/images/watches/1.jpg', 4.9),
+('Seamaster Diver 300M Watch', 'Omega', 'Watch', 'A legendary dive watch since 1993.', 5200.00, 4800.00, 8, 'assets/images/watches/2.jpg', 4.8),
+('Nautilus Watch', 'Patek Philippe', 'Watch', 'Elegant sports watch.', 35000.00, NULL, 2, 'assets/images/watches/3.jpg', 5.0),
+('Royal Oak Watch', 'Audemars Piguet', 'Watch', 'The iconic luxury sports watch.', 28000.00, NULL, 3, 'assets/images/watches/4.jpg', 4.9),
+('Carrera Calibre Heuer 02 Watch', 'TAG Heuer', 'Watch', 'Racing inspired chronograph.', 5800.00, 5400.00, 10, 'assets/images/watches/5.jpg', 4.5),
+('Navitimer Watch', 'Breitling', 'Watch', 'Aviation chronograph.', 8200.00, 7800.00, 6, 'assets/images/watches/6.jpg', 4.7),
+('Luminor Marina Watch', 'Panerai', 'Watch', 'Distinctive Italian design.', 7500.00, 7000.00, 7, 'assets/images/watches/7.jpg', 4.6),
+('Big Bang Watch', 'Hublot', 'Watch', 'The art of fusion.', 15000.00, 14000.00, 4, 'assets/images/watches/8.jpg', 4.4),
+('Oyster Perpetual 41 Watch', 'Rolex', 'Watch', 'Classic and timeless.', 6100.00, NULL, 12, 'assets/images/watches/9.jpg', 4.8),
+('Speedmaster Moonwatch Watch', 'Omega', 'Watch', 'The first watch on the moon.', 6500.00, 6200.00, 9, 'assets/images/watches/10.jpg', 4.9),
 
-('Bleu de Chanel', 'Chanel', 'Perfume', 'A woody aromatic fragrance for men.', 150.00, 135.00, 30, 'assets/images/perfumes/1.jpg', 4.8),
-('Sauvage', 'Dior', 'Perfume', 'A radically fresh composition.', 145.00, 125.00, 25, 'assets/images/perfumes/2.jpg', 4.7),
-('Aventus', 'Creed', 'Perfume', 'Fruity and rich fragrance.', 450.00, 420.00, 10, 'assets/images/perfumes/3.jpg', 4.9),
-('Baccarat Rouge 540', 'Maison Francis Kurkdjian', 'Perfume', 'Luminous and sophisticated.', 325.00, 300.00, 15, 'assets/images/perfumes/4.jpg', 5.0),
-('Oud Wood', 'Tom Ford', 'Perfume', 'Rare, exotic, distinctive.', 275.00, 250.00, 20, 'assets/images/perfumes/5.jpg', 4.8),
-('Le Male', 'Jean Paul Gaultier', 'Perfume', 'The sailor. Intense and sensible.', 105.00, 95.00, 40, 'assets/images/perfumes/6.jpg', 4.5),
-('Black Orchid', 'Tom Ford', 'Perfume', 'Luxurious and sensual.', 150.00, 135.00, 22, 'assets/images/perfumes/7.jpg', 4.6),
-('Terre d\'Hermes', 'Hermes', 'Perfume', 'Woody, vegetal, mineral.', 135.00, 120.00, 28, 'assets/images/perfumes/8.jpg', 4.7),
+('Bleu de Chanel Parfum', 'Chanel', 'Perfume', 'A woody aromatic fragrance for men.', 150.00, 135.00, 30, 'assets/images/perfumes/1.jpg', 4.8),
+('Sauvage Parfum', 'Dior', 'Perfume', 'A radically fresh composition.', 145.00, 125.00, 25, 'assets/images/perfumes/2.jpg', 4.7),
+('Aventus Parfum', 'Creed', 'Perfume', 'Fruity and rich fragrance.', 450.00, 420.00, 10, 'assets/images/perfumes/3.jpg', 4.9),
+('Baccarat Rouge 540 Parfum', 'Maison Francis Kurkdjian', 'Perfume', 'Luminous and sophisticated.', 325.00, 300.00, 15, 'assets/images/perfumes/4.jpg', 5.0),
+('Oud Wood Parfum', 'Tom Ford', 'Perfume', 'Rare, exotic, distinctive.', 275.00, 250.00, 20, 'assets/images/perfumes/5.jpg', 4.8),
+('Le Male Parfum', 'Jean Paul Gaultier', 'Perfume', 'The sailor. Intense and sensible.', 105.00, 95.00, 40, 'assets/images/perfumes/6.jpg', 4.5),
+('Black Orchid Parfum', 'Tom Ford', 'Perfume', 'Luxurious and sensual.', 150.00, 135.00, 22, 'assets/images/perfumes/7.jpg', 4.6),
+('Terre d\'Hermes Parfum', 'Hermes', 'Perfume', 'Woody, vegetal, mineral.', 135.00, 120.00, 28, 'assets/images/perfumes/8.jpg', 4.7),
 ('Y Eau de Parfum', 'Yves Saint Laurent', 'Perfume', 'Deep, fresh and masculine.', 140.00, 125.00, 35, 'assets/images/perfumes/9.jpg', 4.6),
-('Acqua Di Giò Profumo', 'Giorgio Armani', 'Perfume', 'Deep and aquatic.', 160.00, 145.00, 18, 'assets/images/perfumes/10.jpg', 4.8);
+('Acqua Di Giò Profumo Parfum', 'Giorgio Armani', 'Perfume', 'Deep and aquatic.', 160.00, 145.00, 18, 'assets/images/perfumes/10.jpg', 4.8);
 
 -- --------------------------------------------------------
 

@@ -89,7 +89,7 @@ require_once 'includes/header.php';
                     <input type="hidden" name="action" value="add">
                     <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                     <input type="number" name="quantity" class="form-control" value="1" min="1" max="<?php echo $product['stock']; ?>" style="width: 80px;" <?php echo $product['stock'] == 0 ? 'disabled' : ''; ?>>
-                    <button type="submit" class="btn btn-theme flex-grow-1" <?php echo $product['stock'] == 0 ? 'disabled' : ''; ?>>Add to Cart</button>
+                    <button type="submit" class="btn btn-theme btn-hover-transparent flex-grow-1" <?php echo $product['stock'] == 0 ? 'disabled' : ''; ?>>Add to Cart</button>
                 </form>
                 <form action="wishlist.php" method="POST">
                     <input type="hidden" name="action" value="<?php echo $wishlist_action; ?>">

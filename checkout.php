@@ -190,7 +190,7 @@ require_once 'includes/header.php';
                         <span>Total</span>
                         <span style="color: var(--primary-theme);">$<?php echo number_format($subtotal, 2); ?></span>
                     </div>
-                    <button type="submit" form="checkoutForm" class="btn btn-theme w-100 py-3 fw-bold text-uppercase">Place Order</button>
+                    <button type="submit" form="checkoutForm" class="btn btn-theme btn-hover-transparent w-100 py-3 fw-bold text-uppercase">Place Order</button>
                 </div>
             </div>
         </div>

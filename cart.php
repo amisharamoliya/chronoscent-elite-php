@@ -60,7 +60,7 @@ require_once 'includes/header.php';
         <div class="text-center py-5">
             <i class="bi bi-cart-x display-1 text-muted mb-3 d-block"></i>
             <h4>Your cart is currently empty.</h4>
-            <a href="index.php" class="btn btn-theme mt-3">Continue Shopping</a>
+            <a href="index.php" class="btn btn-theme btn-hover-transparent mt-3">Continue Shopping</a>
         </div>
     <?php else: ?>
         <div class="row">
@@ -151,7 +151,7 @@ require_once 'includes/header.php';
                             <span class="fw-bold fs-5">Grand Total</span>
                             <span class="fw-bold fs-5 text-theme" style="color: var(--primary-theme);">$<?php echo number_format($subtotal, 2); ?></span>
                         </div>
-                        <a href="checkout.php" class="btn btn-theme w-100 py-3 fw-bold text-uppercase tracking-wide">Proceed to Checkout</a>
+                        <a href="checkout.php" class="btn btn-theme btn-hover-transparent w-100 py-3 fw-bold text-uppercase tracking-wide">Proceed to Checkout</a>
                     </div>
                 </div>
             </div>

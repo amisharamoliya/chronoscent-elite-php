@@ -110,7 +110,7 @@ require_once 'includes/header.php';
             
             <div class="text-center mt-4">
                 <button onclick="downloadPDF()" class="btn btn-outline-dark me-2"><i class="bi bi-file-earmark-pdf"></i> Download PDF Invoice</button>
-                <a href="review.php?product_id=<?php echo $items[0]['product_id']; ?>" class="btn btn-theme">Leave a Review</a>
+                <a href="review.php?product_id=<?php echo $items[0]['product_id']; ?>" class="btn btn-theme btn-hover-transparent">Leave a Review</a>
             </div>
         </div>
     </div>

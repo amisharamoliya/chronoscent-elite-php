@@ -24,7 +24,7 @@
             <h1 class="display-3 fw-bold mb-3" style="letter-spacing: 2px; text-shadow: 2px 2px 8px rgba(0,0,0,0.5);">Discover Your Style</h1>
             <p class="lead mb-4 fs-4" style="text-shadow: 1px 1px 5px rgba(0,0,0,0.5);">Timeless elegance, curated just for you.</p>
             <div class="d-flex justify-content-center gap-3" style="pointer-events: auto;">
-                <a href="watches.php" class="btn btn-theme btn-lg px-4 shadow">Shop Watches</a>
+                <a href="watches.php" class="btn btn-outline-light btn-lg px-4 shadow">Shop Watches</a>
                 <a href="perfumes.php" class="btn btn-outline-light btn-lg px-4 shadow">Shop Perfumes</a>
             </div>
         </div>

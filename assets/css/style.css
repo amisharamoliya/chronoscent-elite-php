@@ -247,3 +247,10 @@ footer a:hover {
   font-weight: 700;
   letter-spacing: 1px;
 }
+
+/* Add to Cart Hover Transparent */
+.btn-hover-transparent:hover {
+  background-color: transparent !important;
+  color: var(--primary-theme) !important;
+  border-color: var(--primary-theme) !important;
+}

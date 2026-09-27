@@ -22,14 +22,14 @@ $users = $stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <title>Users - ChronoScent Elite Admin</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../assets/css/admin-users.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css?v=2" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css?v=2">
+    <link rel="stylesheet" href="../assets/css/admin-users.css?v=2">
 </head>
 <body>
     <div class="d-flex">
         <div class="sidebar" style="width: 250px;">
-            <h4 class="text-center mb-4 text-warning fw-bold">Admin Panel</h4>
+            <h4 class="text-center mb-4 text-white fw-bold">Admin Panel</h4>
             <a href="dashboard.php"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a>
             <a href="products.php"><i class="bi bi-box me-2"></i> Products</a>
             <a href="orders.php"><i class="bi bi-cart me-2"></i> Orders</a>
@@ -42,7 +42,6 @@ $users = $stmt->fetchAll();
         <div class="main-content flex-grow-1 bg-light">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2 class="mb-0">User Management</h2>
-                <a href="export.php?type=users" class="btn btn-outline-dark"><i class="bi bi-download me-2"></i>Export to CSV</a>
             </div>
             
             <div class="card border-0 shadow-sm">

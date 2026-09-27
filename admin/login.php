@@ -2,6 +2,12 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+if (isset($_SESSION['admin_id'])) {
+    header("Location: dashboard.php");
+    exit;
+}
+
 require_once '../config/database.php';
 
 $error = '';
@@ -14,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $admin = $stmt->fetch();
 
     if ($admin && password_verify($password, $admin['password'])) {
+        session_regenerate_id(true);
         $_SESSION['admin_id'] = $admin['id'];
         header("Location: dashboard.php");
         exit;
@@ -27,8 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Admin Login - ChronoScent Elite</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/admin-login.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css?v=2" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/admin-login.css?v=2">
 </head>
 <body>
     <div class="login-box">

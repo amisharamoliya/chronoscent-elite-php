@@ -36,14 +36,14 @@ $reviews = $stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <title>Reviews - ChronoScent Elite Admin</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../assets/css/admin-reviews.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css?v=2" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css?v=2">
+    <link rel="stylesheet" href="../assets/css/admin-reviews.css?v=2">
 </head>
 <body>
     <div class="d-flex">
         <div class="sidebar" style="width: 250px;">
-            <h4 class="text-center mb-4 text-warning fw-bold">Admin Panel</h4>
+            <h4 class="text-center mb-4 text-white fw-bold">Admin Panel</h4>
             <a href="dashboard.php"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a>
             <a href="products.php"><i class="bi bi-box me-2"></i> Products</a>
             <a href="orders.php"><i class="bi bi-cart me-2"></i> Orders</a>

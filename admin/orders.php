@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../assets/css/orders.css">
+<link rel="stylesheet" href="../assets/css/orders.css?v=2">
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -40,14 +40,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['order_id']) && isset($
 <head>
     <meta charset="UTF-8">
     <title>Orders - ChronoScent Elite Admin</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../assets/css/admin-orders.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css?v=2" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css?v=2">
+    <link rel="stylesheet" href="../assets/css/admin-orders.css?v=2">
 </head>
 <body>
     <div class="d-flex">
         <div class="sidebar orders-style-1">
-            <h4 class="text-center mb-4 text-warning fw-bold">Admin Panel</h4>
+            <h4 class="text-center mb-4 text-white fw-bold">Admin Panel</h4>
             <a href="dashboard.php"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a>
             <a href="products.php"><i class="bi bi-box me-2"></i> Products</a>
             <a href="orders.php" class="active"><i class="bi bi-cart me-2"></i> Orders</a>
@@ -60,7 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['order_id']) && isset($
         <div class="main-content flex-grow-1 bg-light">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2 class="mb-0">Order Management</h2>
-                <a href="export.php?type=orders" class="btn btn-outline-dark"><i class="bi bi-download me-2"></i>Export to CSV</a>
             </div>
             
             <div class="card border-0 shadow-sm">

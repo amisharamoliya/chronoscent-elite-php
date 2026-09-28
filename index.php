@@ -8,7 +8,7 @@ require_once 'components/FeaturedBrands.php';
 require_once 'components/FeaturedProducts.php';
 require_once 'components/WhyChooseUs.php';
 require_once 'components/OfferBanner.php';
-require_once 'components/Newsletter.php';
+
 
 require_once 'includes/footer.php';
 ?>

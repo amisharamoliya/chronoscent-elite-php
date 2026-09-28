@@ -125,7 +125,7 @@ require_once 'includes/header.php';
                         </table>
                     </div>
                 </div>
-                <a href="index.php" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Continue Shopping</a>
+                <a href="index.php" class="btn btn-outline-theme"><i class="bi bi-arrow-left"></i> Continue Shopping</a>
             </div>
             
             <div class="col-lg-4">

@@ -34,7 +34,7 @@
         </div>
         
         <div class="mb-5">
-            <a href="watches.php" class="btn btn-outline-dark px-4 py-2 text-uppercase" style="letter-spacing: 1px; font-size: 0.85rem;">Explore All Watches &rarr;</a>
+            <a href="watches.php" class="btn btn-outline-theme px-4 py-2 text-uppercase" style="letter-spacing: 1px; font-size: 0.85rem;">Explore All Watches &rarr;</a>
         </div>
 
         <!-- Premium Fragrance Brands -->
@@ -67,7 +67,7 @@
         </div>
         
         <div class="mb-5">
-            <a href="perfumes.php" class="btn btn-outline-dark px-4 py-2 text-uppercase" style="letter-spacing: 1px; font-size: 0.85rem;">Explore All Fragrances &rarr;</a>
+            <a href="perfumes.php" class="btn btn-outline-theme px-4 py-2 text-uppercase" style="letter-spacing: 1px; font-size: 0.85rem;">Explore All Fragrances &rarr;</a>
         </div>
     </div>
 </section>

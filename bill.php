@@ -109,7 +109,7 @@ require_once 'includes/header.php';
             </div>
             
             <div class="text-center mt-4">
-                <button onclick="downloadPDF()" class="btn btn-outline-dark me-2"><i class="bi bi-file-earmark-pdf"></i> Download PDF Invoice</button>
+                <a href="invoice.php?id=<?php echo $order_id; ?>" target="_blank" class="btn btn-outline-dark me-2"><i class="bi bi-file-earmark-pdf"></i> Download PDF Invoice</a>
                 <a href="review.php?product_id=<?php echo $items[0]['product_id']; ?>" class="btn btn-theme btn-hover-transparent">Leave a Review</a>
             </div>
         </div>
@@ -124,19 +124,6 @@ require_once 'includes/header.php';
 }
 </style>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-<script>
-function downloadPDF() {
-    const element = document.getElementById('invoice');
-    const opt = {
-        margin:       0.5,
-        filename:     'Invoice_INV-<?php echo str_pad($order_id, 6, '0', STR_PAD_LEFT); ?>.pdf',
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2 },
-        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
-    };
-    html2pdf().set(opt).from(element).save();
-}
-</script>
+
 
 <?php require_once 'includes/footer.php'; ?>

@@ -50,6 +50,20 @@ if (isset($_SESSION['user_id']) && isset($pdo)) {
                     <?php endif; ?>
                 </a>
             </li>
+        <?php endif; ?>
+        
+        <li class="nav-item">
+            <a class="nav-link position-relative" href="cart.php">
+                <i class="bi bi-bag fs-5"></i>
+                <?php if ($cart_count > 0): ?>
+                    <span class="position-absolute top-10 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem;">
+                        <?php echo $cart_count; ?>
+                    </span>
+                <?php endif; ?>
+            </a>
+        </li>
+
+        <?php if (isset($_SESSION['user_id'])): ?>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                     <i class="bi bi-person-circle fs-5"></i>
@@ -64,16 +78,6 @@ if (isset($_SESSION['user_id']) && isset($pdo)) {
         <?php else: ?>
             <li class="nav-item"><a class="nav-link" href="login.php"><i class="bi bi-person fs-5"></i></a></li>
         <?php endif; ?>
-        <li class="nav-item">
-            <a class="nav-link position-relative" href="cart.php">
-                <i class="bi bi-bag fs-5"></i>
-                <?php if ($cart_count > 0): ?>
-                    <span class="position-absolute top-10 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem;">
-                        <?php echo $cart_count; ?>
-                    </span>
-                <?php endif; ?>
-            </a>
-        </li>
       </ul>
     </div>
   </div>

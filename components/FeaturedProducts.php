@@ -1,7 +1,12 @@
 <!-- Featured Products -->
 <section class="py-5 bg-white">
     <div class="container">
-        <h2 class="text-center mb-5 fw-bold" style="color: #2c3e50; font-family: 'Playfair Display', serif;">Featured Products</h2>
+        <div class="text-center mb-5">
+            <h2 class="mb-2 fw-bold" style="color: #2b4968; font-family: 'Playfair Display', Georgia, serif; font-size: 2.6rem;">Featured Products</h2>
+            <p class="text-muted mx-auto mb-0" style="font-size: 1.05rem; color: #64748b;">
+                Premium picks curated exclusively for you.
+            </p>
+        </div>
         
         <div class="row g-4">
             <?php

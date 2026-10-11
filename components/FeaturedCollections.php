@@ -1,8 +1,8 @@
 <!-- Curated Categories -->
 <section class="py-5 bg-white text-center">
     <div class="container mt-4">
-        <h2 class="mb-3 fw-bold" style="color: #3a506b; font-family: 'Playfair Display', serif;">Curated Collections</h2>
-        <p class="text-muted mb-5 mx-auto" style="font-size: 1.1rem; max-width: 600px; line-height: 1.6;">
+        <h2 class="mb-3 fw-bold" style="color: #2b4968; font-family: 'Playfair Display', Georgia, serif; font-size: 2.6rem;">Featured Collections</h2>
+        <p class="text-muted mb-5 mx-auto" style="font-size: 1.05rem; max-width: 580px; line-height: 1.6; color: #64748b;">
             Discover timeless luxury through our carefully curated watches and premium fragrances.
         </p>
         

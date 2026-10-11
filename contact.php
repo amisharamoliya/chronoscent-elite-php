@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <div>
                     <h5 class="mb-1">Address</h5>
-                    <p class="text-muted mb-0">123 Luxury Avenue, Beverly Hills, CA 90210</p>
+                    <p class="text-muted mb-0">Surat, Gujarat, India</p>
                 </div>
             </div>
             <div class="d-flex align-items-center mb-4">
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <div>
                     <h5 class="mb-1">Email</h5>
-                    <p class="text-muted mb-0">contact@chronoscentelite.com</p>
+                    <p class="text-muted mb-0">hello@chronoscentelite.com</p>
                 </div>
             </div>
             <div class="d-flex align-items-center">
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <div>
                     <h5 class="mb-1">Phone</h5>
-                    <p class="text-muted mb-0">+1 (800) 555-0199</p>
+                    <p class="text-muted mb-0">+91 1xxxxxxxxx9</p>
                 </div>
             </div>
         </div>

@@ -2,45 +2,70 @@
 <footer>
     <div class="container">
         <div class="row">
-            <div class="col-md-4 mb-4">
-                <h4 class="footer-heading fw-bold">ChronoScent Elite</h4>
-                <p>Your ultimate destination for luxury watches and exquisite perfumes. Experience timeless elegance with every purchase.</p>
-                <div class="d-flex gap-3 fs-5">
-                    <a href="#"><i class="bi bi-facebook"></i></a>
-                    <a href="#"><i class="bi bi-instagram"></i></a>
-                    <a href="#"><i class="bi bi-twitter"></i></a>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="mb-3">
+                    <h3 class="footer-logo-title">ChronoScent</h3>
+                    <span class="footer-logo-sub">ELITE</span>
+                </div>
+                <p class="footer-desc mb-4">
+                    Discover luxury watches and premium fragrances crafted for those who appreciate timeless elegance.
+                </p>
+                <div class="d-flex gap-2">
+                    <a href="#" class="footer-social-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="footer-social-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="footer-social-btn" aria-label="X (Twitter)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="footer-social-btn" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
                 </div>
             </div>
-            <div class="col-md-2 mb-4">
-                <h5 class="text-white mb-3">Quick Links</h5>
-                <ul class="list-unstyled">
+
+            <div class="col-lg-2 col-md-6 mb-4 col-6">
+                <h5 class="footer-col-title">Shop</h5>
+                <ul class="list-unstyled footer-links">
                     <li><a href="watches.php">Watches</a></li>
-                    <li><a href="perfumes.php">Perfumes</a></li>
-                    <li><a href="about.php">About Us</a></li>
-                    <li><a href="contact.php">Contact</a></li>
+                    <li><a href="perfumes.php">Fragrances</a></li>
+                    <li><a href="watches.php">New Arrivals</a></li>
+                    <li><a href="perfumes.php">Collections</a></li>
                 </ul>
             </div>
-            <div class="col-md-3 mb-4">
-                <h5 class="text-white mb-3">Customer Service</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#">Shipping Policy</a></li>
-                    <li><a href="#">Returns & Exchanges</a></li>
-                    <li><a href="#">FAQ</a></li>
+
+            <div class="col-lg-3 col-md-6 mb-4 col-6">
+                <h5 class="footer-col-title">Company</h5>
+                <ul class="list-unstyled footer-links">
+                    <li><a href="about.php">About</a></li>
+                    <li><a href="contact.php">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
                     <li><a href="#">Terms & Conditions</a></li>
                 </ul>
             </div>
-            <div class="col-md-3 mb-4">
-                <h5 class="text-white mb-3">Contact Info</h5>
-                <ul class="list-unstyled text-muted">
-                    <li><i class="bi bi-geo-alt text-theme me-2"></i> 123 Luxury Ave, NY 10001</li>
-                    <li><i class="bi bi-telephone text-theme me-2"></i> +1 234 567 8900</li>
-                    <li><i class="bi bi-envelope text-theme me-2"></i> info@chronoscentelite.com</li>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5 class="footer-col-title">Contact</h5>
+                <ul class="list-unstyled">
+                    <li class="footer-contact-item">
+                        <i class="bi bi-geo-alt"></i>
+                        <span>Surat, Gujarat, India</span>
+                    </li>
+                    <li class="footer-contact-item">
+                        <i class="bi bi-envelope"></i>
+                        <span>hello@chronoscentelite.com</span>
+                    </li>
+                    <li class="footer-contact-item">
+                        <i class="bi bi-telephone"></i>
+                        <span>+91 1xxxxxxxxx9</span>
+                    </li>
                 </ul>
             </div>
         </div>
-        <hr class="border-secondary mt-4 mb-4">
-        <div class="text-center text-muted">
-            <p class="mb-0">&copy; 2026 ChronoScent Elite. All Rights Reserved.</p>
+
+        <hr class="mt-4 mb-4" style="border-color: rgba(0, 0, 0, 0.08);">
+
+        <div class="text-center py-2">
+            <p class="mb-1 text-muted" style="font-size: 0.88rem;">&copy; 2026 ChronoScent Elite. All Rights Reserved.</p>
+            <p class="mb-0 text-muted" style="font-size: 0.8rem; opacity: 0.75;">Crafted with precision for luxury enthusiasts.</p>
         </div>
     </div>
 </footer>

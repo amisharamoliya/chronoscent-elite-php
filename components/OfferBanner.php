@@ -1,8 +1,30 @@
-<!-- Offer Banner -->
-<section class="py-5 my-5" style="background: linear-gradient(rgba(114, 155, 168, 0.7), rgba(114, 155, 168, 0.7)), url('assets/images/offer-banner.jpg') center/cover; color: white;">
-    <div class="container text-center">
-        <h2 class="display-5 fw-bold mb-3">Special Offer</h2>
-        <p class="lead mb-4">Get 20% off on your first purchase with code WELCOME20</p>
-        <a href="perfumes.php" class="btn btn-theme btn-lg px-5">Shop Now</a>
+<!-- Free Worldwide Shipping Banner -->
+<section class="py-5 bg-white text-center" style="margin-top: 20px; margin-bottom: 10px;">
+    <div class="container my-3">
+        <!-- Badge -->
+        <div class="d-inline-block mb-4 px-3 py-1" style="border: 1px solid #b2c4d4; border-radius: 4px; font-size: 0.74rem; letter-spacing: 2.5px; font-weight: 500; color: #5a738e; text-transform: uppercase;">
+            LIMITED TIME OFFER
+        </div>
+
+        <!-- Heading -->
+        <h2 class="mb-3 fw-bold" style="color: #1e3a5f; font-family: 'Playfair Display', Georgia, serif; font-size: 2.9rem; letter-spacing: -0.5px;">
+            Free Worldwide Shipping
+        </h2>
+
+        <!-- Description -->
+        <p class="text-muted mx-auto mb-4 pb-2" style="font-size: 1.05rem; color: #64748b; max-width: 680px; line-height: 1.6;">
+            Enjoy complimentary shipping on all orders above $250 and experience luxury delivered to your doorstep.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="d-flex justify-content-center align-items-center gap-3 flex-wrap">
+            <a href="watches.php" class="btn btn-outline-theme rounded-pill px-4 py-2" style="font-size: 0.88rem; letter-spacing: 1px;">
+                SHOP WATCHES
+            </a>
+            <a href="perfumes.php" class="btn btn-outline-theme rounded-pill px-4 py-2" style="font-size: 0.88rem; letter-spacing: 1px;">
+                SHOP FRAGRANCES
+            </a>
+        </div>
     </div>
 </section>
+

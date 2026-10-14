@@ -20,15 +20,14 @@ if ($q !== '') {
 }
 ?>
 
-
 <div class="container py-5 min-vh-100">
     <h1 class="fw-bold mb-4" style="color: var(--primary-theme);">Search Results</h1>
     <p class="text-muted mb-4">Showing results for: <strong><?php echo htmlspecialchars($q); ?></strong></p>
 
     <div class="row">
-        <?php 
+        <?php
         if (count($products) > 0) {
-            foreach($products as $p) echo renderProductCard($p); 
+            foreach($products as $p) echo renderProductCard($p);
         } else {
             echo "<div class='col-12 text-center py-5'>
                     <i class='bi bi-search display-1 text-muted mb-3 d-block'></i>

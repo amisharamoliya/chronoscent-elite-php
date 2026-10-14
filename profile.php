@@ -8,7 +8,6 @@ $stmt->execute([$_SESSION['user_id']]);
 $user = $stmt->fetch();
 ?>
 
-
 <div class="container py-5 my-5">
     <div class="row">
         <div class="col-md-4 mb-4">

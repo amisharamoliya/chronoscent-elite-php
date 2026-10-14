@@ -8,22 +8,20 @@ require_admin();
 
 if (isset($_GET['delete'])) {
     $id = (int)$_GET['delete'];
-    
-    // get product id to update rating
+
     $stmt = $pdo->prepare("SELECT product_id FROM reviews WHERE id = ?");
     $stmt->execute([$id]);
     $pid = $stmt->fetchColumn();
 
     $pdo->prepare("DELETE FROM reviews WHERE id = ?")->execute([$id]);
-    
-    // Update product rating
+
     if ($pid) {
         $avg = $pdo->prepare("SELECT AVG(rating) FROM reviews WHERE product_id = ?");
         $avg->execute([$pid]);
         $new_avg = $avg->fetchColumn() ?: 0;
         $pdo->prepare("UPDATE products SET rating = ? WHERE id = ?")->execute([$new_avg, $pid]);
     }
-    
+
     header("Location: reviews.php");
     exit;
 }
@@ -52,7 +50,7 @@ $reviews = $stmt->fetchAll();
             <a href="../index.php" target="_blank"><i class="bi bi-globe me-2"></i> View Site</a>
             <a href="logout.php" class="text-danger mt-5"><i class="bi bi-box-arrow-right me-2"></i> Logout</a>
         </div>
-        
+
         <div class="main-content flex-grow-1 bg-light">
             <h2 class="mb-4">Review Management</h2>
             <div class="card border-0 shadow-sm">
@@ -74,7 +72,7 @@ $reviews = $stmt->fetchAll();
                                 <td><?php echo htmlspecialchars($rev['product_name']); ?></td>
                                 <td><?php echo htmlspecialchars($rev['user_name']); ?></td>
                                 <td>
-                                    <?php 
+                                    <?php
                                     for($i=1; $i<=5; $i++) echo $i <= $rev['rating'] ? '<i class="bi bi-star-fill text-warning"></i>' : '<i class="bi bi-star text-warning"></i>';
                                     ?>
                                 </td>
@@ -96,4 +94,3 @@ $reviews = $stmt->fetchAll();
     </div>
 </body>
 </html>
-

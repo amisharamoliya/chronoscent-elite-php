@@ -1,13 +1,12 @@
-<!-- Why Choose ChronoScent Elite -->
 <section class="py-5 bg-white text-center">
     <div class="container my-3">
         <h2 class="mb-3 fw-bold" style="color: #204260; font-family: 'Playfair Display', Georgia, serif; font-size: 2.6rem;">Why Choose ChronoScent Elite</h2>
         <p class="text-muted mx-auto mb-5" style="font-size: 1.05rem; color: #64748b; max-width: 600px;">
             Luxury shopping with trust, elegance and premium service.
         </p>
-        
+
         <div class="row g-4 justify-content-center">
-            <!-- Free Shipping -->
+
             <div class="col-lg-3 col-md-6">
                 <div class="why-card h-100 d-flex flex-column align-items-center justify-content-center">
                     <div class="why-icon-wrap mb-3">
@@ -17,8 +16,7 @@
                     <p class="why-card-text">Enjoy free shipping on premium orders worldwide.</p>
                 </div>
             </div>
-            
-            <!-- Secure Payment -->
+
             <div class="col-lg-3 col-md-6">
                 <div class="why-card h-100 d-flex flex-column align-items-center justify-content-center">
                     <div class="why-icon-wrap mb-3">
@@ -28,8 +26,7 @@
                     <p class="why-card-text">100% safe and encrypted payment methods.</p>
                 </div>
             </div>
-            
-            <!-- Authentic Brands -->
+
             <div class="col-lg-3 col-md-6">
                 <div class="why-card h-100 d-flex flex-column align-items-center justify-content-center">
                     <div class="why-icon-wrap mb-3">
@@ -39,8 +36,7 @@
                     <p class="why-card-text">Only genuine luxury watches and fragrances.</p>
                 </div>
             </div>
-            
-            <!-- Premium Packaging -->
+
             <div class="col-lg-3 col-md-6">
                 <div class="why-card h-100 d-flex flex-column align-items-center justify-content-center">
                     <div class="why-icon-wrap mb-3">

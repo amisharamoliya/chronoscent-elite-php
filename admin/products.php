@@ -31,13 +31,13 @@ $products = $stmt->fetchAll();
             <a href="../index.php" target="_blank"><i class="bi bi-globe me-2"></i> View Site</a>
             <a href="logout.php" class="text-danger mt-5"><i class="bi bi-box-arrow-right me-2"></i> Logout</a>
         </div>
-        
+
         <div class="main-content flex-grow-1 bg-light">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2>Product Management</h2>
                 <a href="add-product.php" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Add New Product</a>
             </div>
-            
+
             <div class="card border-0 shadow-sm">
                 <div class="card-body p-0">
                     <table class="table table-hover align-middle mb-0">
@@ -75,4 +75,3 @@ $products = $stmt->fetchAll();
     </div>
 </body>
 </html>
-

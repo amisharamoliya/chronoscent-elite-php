@@ -1,14 +1,12 @@
-<!-- Featured Brands -->
 <section class="py-5 bg-light">
     <div class="container text-center">
         <h2 class="mb-2 fw-bold" style="color: #2c3e50; font-family: 'Playfair Display', serif;">Featured Luxury Brands</h2>
         <p class="text-muted mb-5">Explore the world's finest watchmakers and fragrance houses.</p>
 
-        <!-- Luxury Watch Brands -->
         <div class="text-start mb-4">
             <h4 style="color: #2c3e50; font-family: 'Playfair Display', serif;">Luxury Watch Brands</h4>
         </div>
-        
+
         <div class="row align-items-center justify-content-center g-4 mb-5">
             <?php
             $watchBrands = [
@@ -32,16 +30,15 @@
             }
             ?>
         </div>
-        
+
         <div class="mb-5">
             <a href="watches.php" class="btn btn-outline-theme px-4 py-2 text-uppercase" style="letter-spacing: 1px; font-size: 0.85rem;">Explore All Watches &rarr;</a>
         </div>
 
-        <!-- Premium Fragrance Brands -->
         <div class="text-start mb-4 mt-5">
             <h4 style="color: #2c3e50; font-family: 'Playfair Display', serif;">Premium Fragrance Brands</h4>
         </div>
-        
+
         <div class="row align-items-center justify-content-center g-4 mb-5">
             <?php
             $fragranceBrands = [
@@ -65,7 +62,7 @@
             }
             ?>
         </div>
-        
+
         <div class="mb-5">
             <a href="perfumes.php" class="btn btn-outline-theme px-4 py-2 text-uppercase" style="letter-spacing: 1px; font-size: 0.85rem;">Explore All Fragrances &rarr;</a>
         </div>

@@ -6,13 +6,11 @@ require_once '../config/database.php';
 require_once '../includes/auth.php';
 require_admin();
 
-// Dashboard Stats
 $total_users = $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
 $total_products = $pdo->query("SELECT COUNT(*) FROM products")->fetchColumn();
 $total_orders = $pdo->query("SELECT COUNT(*) FROM orders")->fetchColumn();
 $total_revenue = $pdo->query("SELECT SUM(total_amount) FROM orders WHERE status != 'Cancelled'")->fetchColumn();
 $total_reviews = $pdo->query("SELECT COUNT(*) FROM reviews")->fetchColumn();
-
 
 ?>
 <!DOCTYPE html>
@@ -37,7 +35,7 @@ $total_reviews = $pdo->query("SELECT COUNT(*) FROM reviews")->fetchColumn();
             <a href="../index.php" target="_blank"><i class="bi bi-globe me-2"></i> View Site</a>
             <a href="logout.php" class="text-danger mt-5"><i class="bi bi-box-arrow-right me-2"></i> Logout</a>
         </div>
-        
+
         <div class="main-content flex-grow-1 bg-light">
             <h2 class="mb-4">Dashboard Overview</h2>
             <div class="row">
@@ -74,11 +72,9 @@ $total_reviews = $pdo->query("SELECT COUNT(*) FROM reviews")->fetchColumn();
                     </div>
                 </div>
             </div>
-            
 
         </div>
     </div>
-    
 
 </body>
 </html>

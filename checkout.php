@@ -26,7 +26,6 @@ foreach ($_SESSION['cart'] as $id => $quantity) {
     }
 }
 
-// Handle Coupon
 $coupon_discount_percent = 0;
 $coupon_code = '';
 if (isset($_POST['apply_coupon'])) {
@@ -52,33 +51,30 @@ if (isset($_POST['place_order'])) {
     $state = trim($_POST['state']);
     $pincode = trim($_POST['pincode']);
     $payment_method = $_POST['payment_method'];
-    
-    // Check if Online Payment is selected
+
     if ($payment_method == 'Online Payment (Demo)') {
-        // Here we would typically redirect to a payment gateway (e.g., Stripe, Razorpay)
-        // For demo purposes, we will simulate a successful payment and just set status to 'processing'
+
         $status = 'processing';
     } else {
-        $status = 'pending'; // COD
+        $status = 'pending';
     }
-    
+
     $stmt = $pdo->prepare("INSERT INTO orders (user_id, name, email, phone, address, city, state, pincode, total_amount, discount, payment_method, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     if ($stmt->execute([$user_id, $name, $email, $phone, $address, $city, $state, $pincode, $subtotal, $total_discount, $payment_method, $status])) {
         $order_id = $pdo->lastInsertId();
-        
+
         foreach ($_SESSION['cart'] as $id => $quantity) {
             $p_stmt = $pdo->prepare("SELECT price, discount_price FROM products WHERE id = ?");
             $p_stmt->execute([$id]);
             $p = $p_stmt->fetch();
             $price = ($p['discount_price'] > 0) ? $p['discount_price'] : $p['price'];
-            
+
             $pdo->prepare("INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)")->execute([$order_id, $id, $quantity, $price]);
         }
-        
-        // Send Email Confirmation
+
         require_once 'includes/mailer.php';
         send_email($email, "Order Confirmation #INV-" . str_pad($order_id, 6, '0', STR_PAD_LEFT), "Thank you for your purchase, $name! Your order has been placed successfully.");
-        
+
         unset($_SESSION['cart']);
         header("Location: bill.php?id=$order_id");
         exit;
@@ -90,7 +86,7 @@ require_once 'includes/header.php';
 
 <div class="container py-5">
     <h1 class="fw-bold mb-5" style="color: var(--primary-theme);">Checkout</h1>
-    
+
     <div class="row">
         <div class="col-md-8">
             <div class="card border-0 shadow-sm mb-4">
@@ -133,7 +129,7 @@ require_once 'includes/header.php';
                                 <input type="text" name="pincode" class="form-control" required>
                             </div>
                         </div>
-                        
+
                         <h5 class="fw-bold mb-3 mt-4">Payment Method</h5>
                         <div class="form-check mb-2">
                             <input class="form-check-input" type="radio" name="payment_method" value="Cash on Delivery" checked>
@@ -144,7 +140,7 @@ require_once 'includes/header.php';
                             <label class="form-check-label">Online Payment (Demo)</label>
                         </div>
                         <input type="hidden" name="place_order" value="1">
-                        <!-- We can also carry over the coupon code so the order gets the discount -->
+
                         <?php if($coupon_discount_percent > 0): ?>
                         <input type="hidden" name="applied_coupon" value="<?php echo htmlspecialchars($coupon_code); ?>">
                         <?php endif; ?>
@@ -152,13 +148,13 @@ require_once 'includes/header.php';
                 </div>
             </div>
         </div>
-        
+
         <div class="col-md-4">
             <div class="card border-0 shadow-sm bg-light">
                 <div class="card-body p-4">
                     <h5 class="fw-bold mb-4">Order Summary</h5>
-                    <?php 
-                    foreach ($_SESSION['cart'] as $id => $quantity): 
+                    <?php
+                    foreach ($_SESSION['cart'] as $id => $quantity):
                         $stmt = $pdo->prepare("SELECT name, price, discount_price FROM products WHERE id = ?");
                         $stmt->execute([$id]);
                         $p = $stmt->fetch();
@@ -175,9 +171,9 @@ require_once 'includes/header.php';
                         <span>-$<?php echo number_format($total_discount, 2); ?></span>
                     </div>
                     <?php endif; ?>
-                    
+
                     <hr>
-                    <!-- Coupon Form -->
+
                     <form method="POST" class="d-flex mb-3">
                         <input type="text" name="coupon_code" class="form-control me-2" placeholder="Coupon Code" value="<?php echo htmlspecialchars($coupon_code); ?>">
                         <button type="submit" name="apply_coupon" class="btn btn-outline-secondary">Apply</button>
@@ -185,7 +181,7 @@ require_once 'includes/header.php';
                     <?php if($coupon_discount_percent > 0): ?>
                         <div class="alert alert-success py-2 small">Coupon Applied! <?php echo $coupon_discount_percent; ?>% Off</div>
                     <?php endif; ?>
-                    
+
                     <div class="d-flex justify-content-between mb-4 fw-bold fs-5">
                         <span>Total</span>
                         <span style="color: var(--primary-theme);">$<?php echo number_format($subtotal, 2); ?></span>

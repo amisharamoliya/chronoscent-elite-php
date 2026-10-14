@@ -17,26 +17,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $price = (float)$_POST['price'];
     $discount_price = !empty($_POST['discount_price']) ? (float)$_POST['discount_price'] : null;
     $stock = (int)$_POST['stock'];
-    
-    // Default image
+
     $image_path = '';
 
     if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
         $dir_name = ($category === 'Watch') ? 'watches' : 'perfumes';
         $upload_dir = '../assets/images/' . $dir_name . '/';
-        
+
         if (!is_dir($upload_dir)) {
             mkdir($upload_dir, 0777, true);
         }
-        
+
         $file_name = time() . '_' . basename($_FILES['image']['name']);
         $target_file = $upload_dir . $file_name;
-        
+
         if (move_uploaded_file($_FILES['image']['tmp_name'], $target_file)) {
             $image_path = 'assets/images/' . $dir_name . '/' . $file_name;
         }
     }
-    
+
     if(empty($name) || empty($brand) || empty($category) || empty($price)) {
         $error = "Please fill all required fields.";
     } else {
@@ -70,18 +69,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <a href="../index.php" target="_blank"><i class="bi bi-globe me-2"></i> View Site</a>
             <a href="logout.php" class="text-danger mt-5"><i class="bi bi-box-arrow-right me-2"></i> Logout</a>
         </div>
-        
+
         <div class="main-content flex-grow-1 bg-light text-dark">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2 class="text-dark">Add New Product</h2>
                 <a href="products.php" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Back to Products</a>
             </div>
-            
+
             <div class="card border-0 shadow-sm" data-bs-theme="light">
                 <div class="card-body">
                     <?php if($error): ?><div class="alert alert-danger"><?php echo $error; ?></div><?php endif; ?>
                     <?php if($success): ?><div class="alert alert-success"><?php echo $success; ?></div><?php endif; ?>
-                    
+
                     <form method="POST" enctype="multipart/form-data">
                         <div class="row mb-3">
                             <div class="col-md-6">
@@ -93,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <input type="text" name="brand" class="form-control" required>
                             </div>
                         </div>
-                        
+
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label class="form-label">Category *</label>
@@ -108,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <input type="number" name="stock" class="form-control" value="0" required>
                             </div>
                         </div>
-                        
+
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label class="form-label">Price ($) *</label>
@@ -119,17 +118,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <input type="number" step="0.01" name="discount_price" class="form-control">
                             </div>
                         </div>
-                        
+
                         <div class="mb-3">
                             <label class="form-label">Description</label>
                             <textarea name="description" class="form-control" rows="4"></textarea>
                         </div>
-                        
+
                         <div class="mb-4">
                             <label class="form-label">Product Image</label>
                             <input type="file" name="image" class="form-control" accept="image/*">
                         </div>
-                        
+
                         <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Save Product</button>
                     </form>
                 </div>
@@ -138,4 +137,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 </body>
 </html>
-

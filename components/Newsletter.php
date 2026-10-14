@@ -1,4 +1,3 @@
-<!-- Newsletter -->
 <section class="py-5 text-dark text-center" style="background-color: var(--primary-theme);">
     <div class="container">
         <h3 class="mb-3 text-dark fw-bold">Subscribe to our Newsletter</h3>

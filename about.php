@@ -1,6 +1,5 @@
 <?php require_once 'includes/header.php'; ?>
 
-
 <div class="container py-5 my-5">
     <div class="row mb-5 text-center">
         <div class="col-12">

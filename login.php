@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($user && password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_name'] = $user['name'];
-            
+
             $redirect_url = isset($_POST['redirect']) ? $_POST['redirect'] : 'index.php';
             header("Location: $redirect_url");
             exit;
@@ -40,7 +40,7 @@ require_once 'includes/header.php';
             <div class="card shadow-sm border-0">
                 <div class="card-body p-5">
                     <h2 class="text-center mb-4 fw-bold" style="color: var(--primary-theme);">WELCOME BACK</h2>
-                    
+
                     <?php if ($error): ?>
                         <div class="alert alert-danger"><?php echo $error; ?></div>
                     <?php endif; ?>

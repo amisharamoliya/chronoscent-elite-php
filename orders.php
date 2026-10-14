@@ -8,10 +8,9 @@ $stmt->execute([$_SESSION['user_id']]);
 $orders = $stmt->fetchAll();
 ?>
 
-
 <div class="container py-5 min-vh-100">
     <h1 class="fw-bold mb-4" style="width: 250px;">My Orders</h1>
-    
+
     <?php if (empty($orders)): ?>
         <div class="text-center py-5">
             <i class="bi bi-box-seam display-1 text-muted mb-3 d-block"></i>
@@ -39,7 +38,7 @@ $orders = $stmt->fetchAll();
                             <td class="fw-bold text-success">$<?php echo number_format($order['total_amount'], 2); ?></td>
                             <td><?php echo htmlspecialchars($order['payment_method']); ?></td>
                             <td>
-                                <?php 
+                                <?php
                                 $status = $order['status'];
                                 $badge = 'bg-secondary';
                                 if ($status == 'Pending') $badge = 'bg-warning text-dark';
@@ -62,8 +61,7 @@ $orders = $stmt->fetchAll();
             </table>
         </div>
 
-        <!-- Modals -->
-        <?php foreach ($orders as $order): 
+        <?php foreach ($orders as $order):
             $status = $order['status'];
         ?>
         <div class="modal fade" id="trackModal<?php echo $order['id']; ?>" tabindex="-1" aria-hidden="true">

@@ -21,12 +21,10 @@ if (!$product) {
     exit;
 }
 
-// Fetch Reviews
 $rev_stmt = $pdo->prepare("SELECT r.*, u.name FROM reviews r JOIN users u ON r.user_id = u.id WHERE r.product_id = ? ORDER BY r.created_at DESC");
 $rev_stmt->execute([$id]);
 $reviews = $rev_stmt->fetchAll();
 
-// Check if in wishlist
 $in_wishlist = false;
 if (isset($_SESSION['user_id'])) {
     $wl_stmt = $pdo->prepare("SELECT id FROM wishlist WHERE user_id = ? AND product_id = ?");
@@ -42,7 +40,7 @@ require_once 'includes/header.php';
 
 <div class="container py-5">
     <div class="mb-4">
-        <?php 
+        <?php
         $backLink = strtolower($product['category']) == 'watch' ? 'watches.php' : 'perfumes.php';
         $backText = $product['category'] == 'Watch' ? 'Watches' : 'Perfumes';
         ?>
@@ -51,8 +49,6 @@ require_once 'includes/header.php';
         </a>
     </div>
 
-
-
     <div class="row mb-5">
         <div class="col-md-6 mb-4">
             <img src="<?php echo htmlspecialchars($product['image']) . '?v=' . time(); ?>" class="img-fluid rounded shadow-sm w-100" style="max-height: 600px; object-fit: cover;" alt="<?php echo htmlspecialchars($product['name']); ?>">
@@ -60,10 +56,10 @@ require_once 'includes/header.php';
         <div class="col-md-6">
             <p class="text-uppercase tracking-wide text-muted mb-1" style="letter-spacing: 2px; font-size: 0.9rem;"><?php echo htmlspecialchars($product['brand']); ?></p>
             <h1 class="display-5 fw-bold mb-3" style="color: #2c3e50; font-family: 'Playfair Display', serif;"><?php echo htmlspecialchars($product['name']); ?></h1>
-            
+
             <div class="mb-3 d-flex align-items-center">
                 <div class="me-2">
-                    <?php 
+                    <?php
                     for($i=1; $i<=5; $i++) {
                         echo $i <= round($product['rating']) ? '<i class="bi bi-star-fill text-warning"></i>' : '<i class="bi bi-star text-warning"></i>';
                     }
@@ -100,7 +96,6 @@ require_once 'includes/header.php';
         </div>
     </div>
 
-    <!-- Reviews Section -->
     <div class="mt-5 border-top pt-5">
         <h3 class="fw-bold mb-4" style="color: var(--primary-theme);">Customer Reviews</h3>
         <?php if(count($reviews) > 0): ?>
@@ -112,7 +107,7 @@ require_once 'includes/header.php';
                                 <div class="d-flex justify-content-between mb-2">
                                     <h5 class="card-title fw-bold m-0"><?php echo htmlspecialchars($rev['title']); ?></h5>
                                     <div>
-                                        <?php 
+                                        <?php
                                         for($i=1; $i<=5; $i++) echo $i <= $rev['rating'] ? '<i class="bi bi-star-fill text-warning"></i>' : '<i class="bi bi-star text-warning"></i>';
                                         ?>
                                     </div>
@@ -130,7 +125,6 @@ require_once 'includes/header.php';
     </div>
     </div>
 
-    <!-- Related Products -->
     <div class="mt-5 border-top pt-5">
         <h3 class="fw-bold mb-4" style="color: var(--primary-theme);">You May Also Like</h3>
         <div class="row">
@@ -138,7 +132,7 @@ require_once 'includes/header.php';
             $rel_stmt = $pdo->prepare("SELECT * FROM products WHERE category = ? AND id != ? LIMIT 4");
             $rel_stmt->execute([$product['category'], $id]);
             $related = $rel_stmt->fetchAll();
-            
+
             if(count($related) > 0):
                 foreach($related as $rel):
             ?>
@@ -155,7 +149,7 @@ require_once 'includes/header.php';
                         </div>
                     </div>
                 </div>
-            <?php 
+            <?php
                 endforeach;
             else:
                 echo "<p class='text-muted'>No related products found.</p>";

@@ -1,4 +1,3 @@
-<!-- Hero Banner Carousel -->
 <link rel="stylesheet" href="assets/css/hero-section.css">
 <div class="position-relative">
     <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="1800">
@@ -17,8 +16,7 @@
             </div>
         </div>
     </div>
-    
-    <!-- Central Overlay Content -->
+
     <div class="position-absolute top-50 start-50 translate-middle text-center w-100 z-1" style="pointer-events: none;">
         <div class="container text-white">
             <h1 class="display-3 fw-bold mb-3" style="letter-spacing: 2px; text-shadow: 2px 2px 8px rgba(0,0,0,0.5);">Discover Your Style</h1>

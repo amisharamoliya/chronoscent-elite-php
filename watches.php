@@ -1,7 +1,6 @@
 <?php
 require_once 'includes/header.php';
 
-// Filter and Sorting logic
 $sort = isset($_GET['sort']) ? $_GET['sort'] : 'default';
 $brand_filter = isset($_GET['brand']) ? $_GET['brand'] : '';
 $gender_filter = isset($_GET['gender']) ? $_GET['gender'] : '';
@@ -40,10 +39,8 @@ $stmt = $pdo->prepare("SELECT * FROM products WHERE $where_sql ORDER BY $order_b
 $stmt->execute($params);
 $products = $stmt->fetchAll();
 
-// Hardcoded brands as requested
 $brands = ['Rolex', 'Cartier', 'Hublot', 'Gucci', 'Omega'];
 
-// Fetch user wishlist
 $wishlist_product_ids = [];
 if (isset($_SESSION['user_id'])) {
     $wl_stmt = $pdo->prepare("SELECT product_id FROM wishlist WHERE user_id = ?");
@@ -87,7 +84,7 @@ body {
     border-color: #333;
     outline: none;
 }
-/* Clean Premium Grid Layout */
+
 .product-grid {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -103,7 +100,6 @@ body {
     .product-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
-/* Premium Product Card */
 .product-card {
     background: #fff;
     border: 1px solid #eaeaea;
@@ -169,11 +165,11 @@ body {
 </style>
 
 <div class="container py-5">
-    
+
     <div class="filter-bar d-flex justify-content-between align-items-end flex-wrap gap-3">
         <h1 class="watches-header m-0">Watches</h1>
         <form method="GET" class="d-flex align-items-center gap-2 flex-wrap">
-            
+
             <select name="gender" onchange="this.form.submit()">
                 <option value="">Gender</option>
                 <option value="Men" <?php echo $gender_filter == 'Men' ? 'selected' : ''; ?>>Men</option>
@@ -199,7 +195,7 @@ body {
     </div>
 
     <div class="product-grid">
-        <?php 
+        <?php
         if (count($products) > 0) {
             foreach($products as $p) {
                 $img = htmlspecialchars($p['image']);
@@ -211,7 +207,7 @@ body {
                 $heart_icon = $in_wishlist ? 'bi-heart-fill' : 'bi-heart';
                 $heart_color = $in_wishlist ? '#dc3545' : '#666';
                 $wishlist_action = $in_wishlist ? 'remove' : 'add';
-                
+
                 echo "
                 <div class='product-card'>
                     <div class='product-image-wrapper'>

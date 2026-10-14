@@ -1,5 +1,4 @@
 <?php
-// Utility functions
 
 function formatPrice($price) {
     return '$' . number_format($price, 2);
@@ -13,7 +12,7 @@ function renderProductCard($product) {
     $price = $product['price'];
     $discount_price = $product['discount_price'];
     $rating = $product['rating'];
-    
+
     $priceHtml = '';
     if ($discount_price) {
         $percent = round((($price - $discount_price) / $price) * 100);

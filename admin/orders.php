@@ -13,15 +13,13 @@ $orders = $stmt->fetchAll();
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['order_id']) && isset($_POST['status'])) {
     $order_id = (int)$_POST['order_id'];
     $status = $_POST['status'];
-    
-    // Fetch order details before update
+
     $stmt = $pdo->prepare("SELECT status, email, name FROM orders WHERE id = ?");
     $stmt->execute([$order_id]);
     $orderData = $stmt->fetch();
 
     $pdo->prepare("UPDATE orders SET status = ? WHERE id = ?")->execute([$status, $order_id]);
-    
-    // Trigger email if status changed to Shipped or Delivered
+
     if ($orderData && $orderData['status'] !== $status) {
         if ($status == 'Shipped' || $status == 'Delivered') {
             require_once '../includes/mailer.php';
@@ -30,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['order_id']) && isset($
             send_email($orderData['email'], $subject, $body);
         }
     }
-    
+
     header("Location: orders.php");
     exit;
 }
@@ -56,12 +54,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['order_id']) && isset($
             <a href="../index.php" target="_blank"><i class="bi bi-globe me-2"></i> View Site</a>
             <a href="logout.php" class="text-danger mt-5"><i class="bi bi-box-arrow-right me-2"></i> Logout</a>
         </div>
-        
+
         <div class="main-content flex-grow-1 bg-light">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2 class="mb-0">Order Management</h2>
             </div>
-            
+
             <div class="card border-0 shadow-sm">
                 <div class="card-body p-0">
                     <table class="table table-hover align-middle mb-0">

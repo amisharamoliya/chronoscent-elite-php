@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $price = (float)$_POST['price'];
     $discount_price = empty($_POST['discount_price']) ? NULL : (float)$_POST['discount_price'];
     $stock = (int)$_POST['stock'];
-    
+
     $image_url = $product['image'];
     if (!empty($_POST['image_url'])) {
         $image_url = $_POST['image_url'];

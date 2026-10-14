@@ -1,4 +1,3 @@
-<!-- Featured Products -->
 <section class="py-5 bg-white">
     <div class="container">
         <div class="text-center mb-5">
@@ -7,10 +6,10 @@
                 Premium picks curated exclusively for you.
             </p>
         </div>
-        
+
         <div class="row g-4">
             <?php
-            // Using the custom images provided by the user
+
             $featuredItems = [
                 [
                     'id' => 83,

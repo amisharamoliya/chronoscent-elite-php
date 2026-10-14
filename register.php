@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="card shadow-sm border-0">
                 <div class="card-body p-5">
                     <h2 class="text-center mb-4 fw-bold" style="color: var(--primary-theme);">CREATE ACCOUNT</h2>
-                    
+
                     <?php if ($error): ?>
                         <div class="alert alert-danger"><?php echo $error; ?></div>
                     <?php endif; ?>

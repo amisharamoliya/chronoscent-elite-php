@@ -2,7 +2,7 @@
 $host = 'localhost';
 $dbname = 'chronoscent-elite';
 $username = 'root';
-$password = ''; // Default XAMPP
+$password = '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);

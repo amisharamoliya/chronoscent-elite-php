@@ -51,7 +51,7 @@ if (isset($_SESSION['user_id']) && isset($pdo)) {
                 </a>
             </li>
         <?php endif; ?>
-        
+
         <li class="nav-item">
             <a class="nav-link position-relative" href="cart.php">
                 <i class="bi bi-bag fs-5"></i>
@@ -87,8 +87,7 @@ if (isset($_SESSION['user_id']) && isset($pdo)) {
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('searchInput');
     const searchResults = document.getElementById('searchResults');
-    
-    // Close dropdown when clicking outside
+
     document.addEventListener('click', function(e) {
         if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
             searchResults.style.display = 'none';

@@ -66,9 +66,9 @@ $html = '
                 </td>
             </tr>
         </table>
-        
+
         <br><br>
-        
+
         <table class="details">
             <tr>
                 <td width="50%">
@@ -87,7 +87,7 @@ $html = '
                 </td>
             </tr>
         </table>
-        
+
         <table class="items-table">
             <thead>
                 <tr>
@@ -98,7 +98,7 @@ $html = '
                 </tr>
             </thead>
             <tbody>';
-            
+
 foreach ($items as $item) {
     $html .= '
                 <tr>
@@ -112,7 +112,7 @@ foreach ($items as $item) {
 $html .= '
             </tbody>
         </table>
-        
+
         <table class="totals">
             <tr>
                 <td class="label">Subtotal:</td>

@@ -8,10 +8,9 @@ if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
-// Handle Cart Actions
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
     $product_id = (int)$_POST['product_id'];
-    
+
     if ($_POST['action'] == 'add') {
         $quantity = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 1;
         if (isset($_SESSION['cart'][$product_id])) {
@@ -29,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
     } elseif ($_POST['action'] == 'remove') {
         unset($_SESSION['cart'][$product_id]);
     }
-    
+
     if (isset($_POST['is_ajax'])) {
         $cart_count = 0;
         if (isset($_SESSION['cart'])) {
@@ -40,12 +39,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
         echo json_encode(['status' => 'success', 'cart_count' => $cart_count]);
         exit;
     }
-    
+
     $redirect_url = 'cart.php';
     if ($_POST['action'] != 'add' && isset($_SERVER['HTTP_REFERER'])) {
         $redirect_url = $_SERVER['HTTP_REFERER'];
     }
-    
+
     header("Location: cart.php");
     exit;
 }
@@ -55,7 +54,7 @@ require_once 'includes/header.php';
 
 <div class="container py-5 min-vh-100">
     <h1 class="fw-bold mb-4" style="color: var(--primary-theme);">Shopping Cart</h1>
-    
+
     <?php if (empty($_SESSION['cart'])): ?>
         <div class="text-center py-5">
             <i class="bi bi-cart-x display-1 text-muted mb-3 d-block"></i>
@@ -78,10 +77,10 @@ require_once 'includes/header.php';
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php 
+                                <?php
                                 $subtotal = 0;
                                 $total_discount = 0;
-                                foreach ($_SESSION['cart'] as $id => $quantity): 
+                                foreach ($_SESSION['cart'] as $id => $quantity):
                                     $stmt = $pdo->prepare("SELECT * FROM products WHERE id = ?");
                                     $stmt->execute([$id]);
                                     $p = $stmt->fetch();
@@ -127,7 +126,7 @@ require_once 'includes/header.php';
                 </div>
                 <a href="index.php" class="btn btn-outline-theme"><i class="bi bi-arrow-left"></i> Continue Shopping</a>
             </div>
-            
+
             <div class="col-lg-4">
                 <div class="card border-0 shadow-sm bg-light">
                     <div class="card-body p-4">

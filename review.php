@@ -25,17 +25,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $rating = (int)$_POST['rating'];
     $title = trim($_POST['title']);
     $message = trim($_POST['message']);
-    
+
     $stmt = $pdo->prepare("INSERT INTO reviews (user_id, product_id, rating, title, message) VALUES (?, ?, ?, ?, ?)");
     if ($stmt->execute([$_SESSION['user_id'], $product_id, $rating, $title, $message])) {
-        // Update product average rating
+
         $avg_stmt = $pdo->prepare("SELECT AVG(rating) as avg_rating FROM reviews WHERE product_id = ?");
         $avg_stmt->execute([$product_id]);
         $avg = $avg_stmt->fetchColumn();
-        
+
         $update_stmt = $pdo->prepare("UPDATE products SET rating = ? WHERE id = ?");
         $update_stmt->execute([$avg, $product_id]);
-        
+
         $success = 'Thank you! Your review has been submitted.';
     }
 }
@@ -50,9 +50,9 @@ require_once 'includes/header.php';
                 <div class="card-body p-5 text-center">
                     <h2 class="fw-bold mb-3" style="color: var(--primary-theme);">Thank you for shopping with ChronoScent Elite!</h2>
                     <p class="text-white mb-4">Please share your experience about the <strong><?php echo htmlspecialchars($product['name']); ?></strong>.</p>
-                    
+
                     <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 30px;">
-                    
+
                     <?php if ($success): ?>
                         <div class="alert alert-success"><?php echo $success; ?></div>
                         <a href="product-details.php?id=<?php echo $product_id; ?>" class="btn btn-theme btn-hover-transparent w-100">View Product</a>

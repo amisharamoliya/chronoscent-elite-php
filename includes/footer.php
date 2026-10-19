@@ -37,7 +37,7 @@
                 <ul class="list-unstyled footer-links">
                     <li><a href="about.php">About</a></li>
                     <li><a href="contact.php">Contact</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="privacy-policy.php">Privacy Policy</a></li>
                     <li><a href="#">Terms & Conditions</a></li>
                 </ul>
             </div>

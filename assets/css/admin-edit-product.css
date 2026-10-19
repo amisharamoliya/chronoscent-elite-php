@@ -1,1 +1,10 @@
-body { background: #f8f9fa; padding: 40px; } .container { max-width: 600px; background: white; padding: 30px; border-radius: 8px; }
+body { 
+    background: #f8f9fa; 
+    padding: 40px; 
+} 
+.container { 
+    max-width: 600px; 
+    background: white; 
+    padding: 30px; 
+    border-radius: 8px; 
+}

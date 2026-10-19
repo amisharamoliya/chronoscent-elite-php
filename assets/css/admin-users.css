@@ -1,4 +1,20 @@
-.sidebar { min-height: 100vh; background: #212529; color: white; padding-top: 20px; }
-        .sidebar a { color: #ccc; text-decoration: none; display: block; padding: 10px 20px; }
-        .sidebar a:hover, .sidebar a.active { background: white !important; color: black !important; }
-        .main-content { padding: 30px; }
+.sidebar {
+        min-height: 100vh; 
+        background: #212529; 
+        color: white; 
+        padding-top: 20px; 
+}
+        
+.sidebar a { 
+        color: #ccc; 
+        text-decoration: none; 
+        display: block; 
+        padding: 10px 20px; 
+}
+.sidebar a:hover, .sidebar a.active { 
+        background: white !important; 
+        color: black !important; 
+}
+.main-content { 
+        padding: 30px; 
+}

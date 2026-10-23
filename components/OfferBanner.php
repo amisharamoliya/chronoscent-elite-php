@@ -10,7 +10,7 @@
         </h2>
 
         <p class="text-muted mx-auto mb-4 pb-2" style="font-size: 1.05rem; color: #64748b; max-width: 680px; line-height: 1.6;">
-            Enjoy complimentary shipping on all orders above $250 and experience luxury delivered to your doorstep.
+            Enjoy complimentary shipping on all orders above ₹2,500 and experience luxury delivered to your doorstep.
         </p>
 
         <div class="d-flex justify-content-center align-items-center gap-3 flex-wrap">

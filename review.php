@@ -55,7 +55,7 @@ require_once 'includes/header.php';
 
                     <?php if ($success): ?>
                         <div class="alert alert-success"><?php echo $success; ?></div>
-                        <a href="product-details.php?id=<?php echo $product_id; ?>" class="btn btn-theme btn-hover-transparent w-100">View Product</a>
+                        <a href="product-details.php?id=<?php echo $product_id; ?>" class="btn btn-outline-theme rounded-pill w-100 py-3 fw-bold shadow">View Product</a>
                     <?php else: ?>
                         <form method="POST" class="text-start">
                             <div class="mb-3 text-center">
@@ -88,7 +88,7 @@ require_once 'includes/header.php';
                                 <label class="form-label fw-bold">Review Message</label>
                                 <textarea name="message" class="form-control" rows="4" placeholder="Share details of your own experience at this place" required></textarea>
                             </div>
-                            <button type="submit" class="btn btn-theme btn-hover-transparent w-100 py-3 fw-bold">Submit Review</button>
+                            <button type="submit" class="btn btn-outline-theme rounded-pill w-100 py-3 fw-bold shadow">Submit Review</button>
                         </form>
                     <?php endif; ?>
                 </div>

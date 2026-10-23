@@ -15,7 +15,7 @@ $orders = $stmt->fetchAll();
         <div class="text-center py-5">
             <i class="bi bi-box-seam display-1 text-muted mb-3 d-block"></i>
             <h4>You haven't placed any orders yet.</h4>
-            <a href="index.php" class="btn btn-theme mt-3">Start Shopping</a>
+            <a href="index.php" class="btn btn-outline-theme rounded-pill px-4 py-2 mt-3 shadow-sm">Start Shopping</a>
         </div>
     <?php else: ?>
         <div class="table-responsive">
@@ -35,7 +35,7 @@ $orders = $stmt->fetchAll();
                         <tr>
                             <td class="fw-bold">#INV-<?php echo str_pad($order['id'], 6, '0', STR_PAD_LEFT); ?></td>
                             <td><?php echo date('M d, Y', strtotime($order['created_at'])); ?></td>
-                            <td class="fw-bold text-success">$<?php echo number_format($order['total_amount'], 2); ?></td>
+                            <td class="fw-bold text-success">₹<?php echo formatIndianNumber($order['total_amount']); ?></td>
                             <td><?php echo htmlspecialchars($order['payment_method']); ?></td>
                             <td>
                                 <?php
@@ -50,10 +50,10 @@ $orders = $stmt->fetchAll();
                                 <span class="badge <?php echo $badge; ?>"><?php echo ucfirst($status); ?></span>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-outline-theme" data-bs-toggle="modal" data-bs-target="#trackModal<?php echo $order['id']; ?>">
+                                <button type="button" class="btn btn-sm btn-outline-theme rounded-pill px-3 shadow-sm me-1" data-bs-toggle="modal" data-bs-target="#trackModal<?php echo $order['id']; ?>">
                                     Track Order
                                 </button>
-                                <a href="bill.php?id=<?php echo $order['id']; ?>" class="btn btn-sm btn-outline-dark">Invoice</a>
+                                <a href="bill.php?id=<?php echo $order['id']; ?>" class="btn btn-sm btn-outline-theme rounded-pill px-3 shadow-sm">Invoice</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

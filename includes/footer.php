@@ -7,19 +7,9 @@
                     <h3 class="footer-logo-title">ChronoScent</h3>
                     <span class="footer-logo-sub">ELITE</span>
                 </div>
-                <p class="footer-desc mb-4">
+                <p class="footer-desc mb-0">
                     Discover luxury watches and premium fragrances crafted for those who appreciate timeless elegance.
                 </p>
-                <div class="d-flex gap-2">
-                    <a href="#" class="footer-social-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="footer-social-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="footer-social-btn" aria-label="X (Twitter)">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="footer-social-btn" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
-                </div>
             </div>
 
             <div class="col-lg-2 col-md-6 mb-4 col-6">

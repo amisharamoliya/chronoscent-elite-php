@@ -17,9 +17,9 @@ $user = $stmt->fetch();
                 <p class="text-muted"><?php echo htmlspecialchars($user['email']); ?></p>
                 <p class="text-muted"><?php echo htmlspecialchars($user['phone']); ?></p>
                 <hr>
-                <a href="orders.php" class="btn btn-outline-theme w-100 mb-2">My Orders</a>
-                <a href="wishlist.php" class="btn btn-outline-theme w-100 mb-2">My Wishlist</a>
-                <a href="logout.php" class="btn btn-danger w-100">Logout</a>
+                <a href="orders.php" class="btn btn-outline-theme rounded-pill w-100 mb-3 shadow-sm">My Orders</a>
+                <a href="wishlist.php" class="btn btn-outline-theme rounded-pill w-100 mb-3 shadow-sm">My Wishlist</a>
+                <a href="logout.php" class="btn btn-outline-danger rounded-pill w-100 shadow-sm">Logout</a>
             </div>
         </div>
         <div class="col-md-8">

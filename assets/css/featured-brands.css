@@ -1,6 +1,100 @@
-.brand-card:hover {
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    border-color: #cbd5e1 !important;
-    background-color: white !important;
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+.featured-brands-section {
+    background-color: #ffffff;
 }
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap');
+
+.brand-card {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    padding: 24px 18px 20px 18px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    text-align: center !important;
+    cursor: pointer;
+    overflow: hidden;
+    height: 100%;
+}
+
+.brand-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(43, 73, 104, 0.08) !important;
+    border-color: #cbd5e1 !important;
+}
+
+.brand-img-wrapper {
+    width: 100%;
+    height: 165px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    margin-bottom: 16px;
+    border-radius: 6px;
+}
+
+.brand-img {
+    max-height: 135px !important;
+    max-width: 85% !important;
+    width: auto;
+    height: auto;
+    object-fit: contain !important;
+    transition: transform 0.35s ease;
+}
+
+.brand-card:hover .brand-img {
+    transform: scale(1.05);
+}
+
+.brand-info {
+    width: 100%;
+    margin-top: auto;
+}
+
+.brand-name {
+    color: #2b4968;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    transition: color 0.25s ease;
+}
+
+.brand-card:hover .brand-name {
+    color: #1a334d;
+}
+
+.brand-location {
+    color: #64748b;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+.btn-brand-explore {
+    display: inline-block;
+    padding: 10px 32px;
+    border: 1.5px solid #2b4968;
+    color: #2b4968;
+    background: transparent;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.btn-brand-explore:hover {
+    background-color: #2b4968;
+    color: #ffffff;
+    border-color: #2b4968;
+}

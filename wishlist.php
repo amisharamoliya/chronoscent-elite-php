@@ -54,23 +54,30 @@ require_once 'includes/header.php';
         <div class="row">
             <?php foreach ($wishlist as $p): ?>
                 <div class="col-md-3 col-sm-6 mb-4">
-                    <div class="card product-card h-100">
+                    <div class="card product-card h-100 position-relative">
                         <img src="<?php echo htmlspecialchars($p['image']); ?>" class="card-img-top product-img" alt="">
                         <div class="card-body d-flex flex-column text-center">
                             <h6 class="card-title fw-bold mb-1 text-white"><?php echo htmlspecialchars($p['name']); ?></h6>
                             <p class="text-white small mb-2"><?php echo htmlspecialchars($p['brand']); ?></p>
-                            <h6 class="text-theme mb-3">$<?php echo number_format($p['discount_price'] ? $p['discount_price'] : $p['price'], 2); ?></h6>
+                            <?php if (!empty($p['discount_price']) && $p['discount_price'] > 0 && $p['discount_price'] < $p['price']): ?>
+                                <h6 class="mb-3">
+                                    <span class="text-muted text-decoration-line-through small me-2">₹<?php echo formatIndianNumber($p['price']); ?></span>
+                                    <span class="text-danger fw-bold">₹<?php echo formatIndianNumber($p['discount_price']); ?></span>
+                                </h6>
+                            <?php else: ?>
+                                <h6 class="text-theme mb-3">₹<?php echo formatIndianNumber($p['price']); ?></h6>
+                            <?php endif; ?>
 
-                            <div class="mt-auto d-flex gap-2 justify-content-center">
+                            <div class="mt-auto d-flex gap-2 justify-content-center align-items-center">
                                 <form action="cart.php" method="POST" class="flex-grow-1">
                                     <input type="hidden" name="action" value="add">
                                     <input type="hidden" name="product_id" value="<?php echo $p['id']; ?>">
-                                    <button type="submit" class="btn btn-sm btn-theme w-100">Add to Cart</button>
+                                    <button type="submit" class="btn btn-sm btn-outline-theme rounded-pill w-100 shadow-sm">Add to Cart</button>
                                 </form>
                                 <form action="wishlist.php" method="POST">
                                     <input type="hidden" name="action" value="remove">
                                     <input type="hidden" name="product_id" value="<?php echo $p['id']; ?>">
-                                    <button type="submit" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                    <button type="submit" class="btn btn-sm btn-outline-danger rounded-circle shadow-sm" style="width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center;"><i class="bi bi-trash"></i></button>
                                 </form>
                             </div>
                         </div>

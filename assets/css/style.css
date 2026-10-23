@@ -1,22 +1,18 @@
 :root {
   --primary-theme: #729ba8;
   --secondary-theme: #5a808c;
-  --bg-color: #f4f9fc;
+  --bg-color: #ffffff;
   --card-bg: #ffffff;
-  --border-color: #dbeafe;
+  --border-color: #e5e7eb;
 }
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: var(--bg-color);
+  background-color: #ffffff;
   color: #212529;
-
-  background-image:
-    radial-gradient(rgba(114, 155, 168, 0.05) 1px, transparent 1px),
-    radial-gradient(rgba(114, 155, 168, 0.05) 1px, transparent 1px);
-  background-position: 0 0, 25px 25px;
-  background-size: 50px 50px;
+  background-image: none;
 }
+
 
 .navbar-custom {
   background-color: rgba(255, 255, 255, 0.95) !important;
@@ -37,6 +33,23 @@ body {
 .navbar-custom .nav-link:hover {
   color: var(--primary-theme) !important;
   text-shadow: none;
+}
+
+.navbar-custom .nav-link.active {
+  color: #111827 !important;
+  font-weight: 600;
+  position: relative;
+}
+
+.navbar-custom .nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 0.5rem;
+  right: 0.5rem;
+  height: 2px;
+  background-color: #111827;
+  border-radius: 1px;
 }
 
 .hero-section {
@@ -114,16 +127,24 @@ body {
   color: #ffffff;
   font-weight: 600;
   border: 1px solid var(--primary-theme);
-  border-radius: 25px;
-  padding: 10px 25px;
+  border-radius: 50px !important;
+  padding: 11px 28px;
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(114, 155, 168, 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
 .btn-theme:hover {
   background-color: var(--secondary-theme);
+  border-color: var(--secondary-theme);
   color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(114, 155, 168, 0.35);
 }
 
 .btn-outline-theme {
@@ -131,16 +152,36 @@ body {
   border: 1px solid var(--primary-theme);
   color: var(--primary-theme);
   font-weight: 600;
-  border-radius: 25px;
-  padding: 10px 25px;
+  border-radius: 50px !important;
+  padding: 11px 28px;
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(114, 155, 168, 0.15);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
 .btn-outline-theme:hover {
   background-color: var(--primary-theme);
-  color: #ffffff;
+  border-color: var(--primary-theme);
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(114, 155, 168, 0.35);
+}
+
+.btn-sm.btn-theme,
+.btn-sm.btn-outline-theme {
+  padding: 7px 20px;
+  font-size: 0.85rem;
+}
+
+.btn-lg.btn-theme,
+.btn-lg.btn-outline-theme {
+  padding: 14px 34px;
+  font-size: 1.05rem;
 }
 
 .form-control,
@@ -255,18 +296,9 @@ footer {
   flex-shrink: 0;
 }
 
-.discount-badge {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  background: var(--bg-color);
-  border: 1px solid var(--primary-theme);
-  color: var(--primary-theme);
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 1px;
+.discount-badge,
+.product-discount-pill {
+  display: none !important;
 }
 
 .btn-hover-transparent:hover {
@@ -274,3 +306,42 @@ footer {
   color: var(--primary-theme) !important;
   border-color: var(--primary-theme) !important;
 }
+
+.card {
+  background-color: #ffffff !important;
+}
+
+/* ==========================================================================
+   Theme Blue Shadow Cards (Matches Website Signature Blue)
+   ========================================================================== */
+.auth-card-shadow,
+.theme-card-shadow {
+  background-color: #ffffff !important;
+  border: 1px solid rgba(114, 155, 168, 0.25) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 12px 36px rgba(114, 155, 168, 0.22), 0 4px 14px rgba(114, 155, 168, 0.12) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.auth-card-shadow:hover,
+.theme-card-shadow:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 44px rgba(114, 155, 168, 0.32), 0 6px 18px rgba(114, 155, 168, 0.16) !important;
+}
+
+/* Featured Products Card with Blue Shadow */
+.featured-product-card {
+  background-color: #ffffff !important;
+  border: 1px solid rgba(114, 155, 168, 0.25) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 10px 30px rgba(114, 155, 168, 0.2), 0 3px 10px rgba(114, 155, 168, 0.1) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  overflow: hidden;
+}
+
+.featured-product-card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 16px 40px rgba(114, 155, 168, 0.35), 0 6px 16px rgba(114, 155, 168, 0.16) !important;
+}
+
+

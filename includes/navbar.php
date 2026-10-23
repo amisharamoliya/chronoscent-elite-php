@@ -24,12 +24,17 @@ if (isset($_SESSION['user_id']) && isset($pdo)) {
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
+      <?php
+      $current_page = basename($_SERVER['PHP_SELF']);
+      $is_watch_active = ($current_page == 'watches.php' || ($current_page == 'product-details.php' && isset($product) && strtolower($product['category']) == 'watch'));
+      $is_fragrance_active = ($current_page == 'perfumes.php' || ($current_page == 'product-details.php' && isset($product) && strtolower($product['category']) == 'perfume'));
+      ?>
       <ul class="navbar-nav mx-auto">
-        <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="watches.php">Watches</a></li>
-        <li class="nav-item"><a class="nav-link" href="perfumes.php">Perfumes</a></li>
-        <li class="nav-item"><a class="nav-link" href="about.php">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
+        <li class="nav-item"><a class="nav-link <?php echo $current_page == 'index.php' ? 'active' : ''; ?>" href="index.php">Home</a></li>
+        <li class="nav-item"><a class="nav-link <?php echo $is_watch_active ? 'active' : ''; ?>" href="watches.php">Watches</a></li>
+        <li class="nav-item"><a class="nav-link <?php echo $is_fragrance_active ? 'active' : ''; ?>" href="perfumes.php">Fragrances</a></li>
+        <li class="nav-item"><a class="nav-link <?php echo $current_page == 'about.php' ? 'active' : ''; ?>" href="about.php">About</a></li>
+        <li class="nav-item"><a class="nav-link <?php echo $current_page == 'contact.php' ? 'active' : ''; ?>" href="contact.php">Contact</a></li>
       </ul>
       <form class="d-flex me-3 position-relative" action="search.php" method="GET">
         <div class="input-group">
@@ -63,7 +68,20 @@ if (isset($_SESSION['user_id']) && isset($pdo)) {
             </a>
         </li>
 
-        <?php if (isset($_SESSION['user_id'])): ?>
+        <?php if (isset($_SESSION['admin_id'])): ?>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-dark fw-bold" href="#" role="button" data-bs-toggle="dropdown">
+                    <i class="bi bi-shield-lock-fill fs-5 me-1 text-theme"></i> Admin
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                    <li><a class="dropdown-item fw-semibold" href="admin/dashboard.php"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
+                    <li><a class="dropdown-item" href="admin/products.php"><i class="bi bi-box me-2"></i>Products</a></li>
+                    <li><a class="dropdown-item" href="admin/orders.php"><i class="bi bi-cart me-2"></i>Orders</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="admin/logout.php"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                </ul>
+            </li>
+        <?php elseif (isset($_SESSION['user_id'])): ?>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                     <i class="bi bi-person-circle fs-5"></i>
@@ -115,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <img src="${item.image}" alt="${item.name}" class="me-2" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px;">
                             <div class="flex-grow-1">
                                 <div class="fw-bold small lh-1">${item.name}</div>
-                                <div class="text-theme small fw-bold mt-1">$${parseFloat(price).toFixed(2)}</div>
+                                <div class="text-theme small fw-bold mt-1">₹${Math.round(parseFloat(price)).toLocaleString('en-IN')}</div>
                             </div>
                         `;
                         div.onmouseover = function() { this.style.backgroundColor = '#f8f9fa'; };

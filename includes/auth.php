@@ -16,7 +16,7 @@ function require_login() {
 
 function require_admin() {
     if (!isset($_SESSION['admin_id'])) {
-        header("Location: login.php");
+        header("Location: ../login.php");
         exit;
     }
 }

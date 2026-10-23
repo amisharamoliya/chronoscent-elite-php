@@ -10,6 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $stmt = $pdo->prepare("INSERT INTO contacts (name, email, subject, message) VALUES (?, ?, ?, ?)");
     if ($stmt->execute([$name, $email, $subject, $message])) {
+        require_once 'includes/mailer.php';
+        send_email('hello@chronoscentelite.com', "New Contact Inquiry from $name: $subject", "Customer Name: $name\nEmail: $email\nSubject: $subject\nMessage: $message");
         $success = "Thank you for reaching out! We will get back to you shortly.";
     }
 }
@@ -54,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
 
         <div class="col-md-6">
-            <div class="card border-0 shadow-sm p-4">
+            <div class="card border-0 auth-card-shadow p-4 p-md-5">
                 <?php if ($success): ?>
                     <div class="alert alert-success"><?php echo $success; ?></div>
                 <?php endif; ?>
@@ -75,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <label class="form-label">Message</label>
                         <textarea name="message" class="form-control" rows="5" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-theme w-100">Send Message</button>
+                    <button type="submit" class="btn btn-outline-theme rounded-pill w-100 py-3 fw-bold shadow">Send Message</button>
                 </form>
             </div>
         </div>

@@ -11,4 +11,6 @@ try {
 } catch(PDOException $e) {
     die("Database Connection failed: " . $e->getMessage());
 }
+
+require_once __DIR__ . '/../includes/functions.php';
 ?>

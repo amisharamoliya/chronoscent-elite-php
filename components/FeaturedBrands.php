@@ -1,13 +1,11 @@
-<section class="py-5 bg-light">
+<section class="py-5 bg-white featured-brands-section">
     <div class="container text-center">
-        <h2 class="mb-2 fw-bold" style="color: #2c3e50; font-family: 'Playfair Display', serif;">Featured Luxury Brands</h2>
-        <p class="text-muted mb-5">Explore the world's finest watchmakers and fragrance houses.</p>
 
         <div class="text-start mb-4">
-            <h4 style="color: #2c3e50; font-family: 'Playfair Display', serif;">Luxury Watch Brands</h4>
+            <h3 class="fw-bold m-0" style="color: #2b4968; font-family: 'Playfair Display', Georgia, serif; font-size: 1.85rem;">Luxury Watch Brands</h3>
         </div>
 
-        <div class="row align-items-center justify-content-center g-4 mb-5">
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 mb-4 justify-content-center">
             <?php
             $watchBrands = [
                 ['file' => 'rolex.jpg', 'name' => 'Rolex', 'location' => 'GENEVA, SWITZERLAND'],
@@ -18,28 +16,32 @@
             ];
             foreach ($watchBrands as $brand) {
                 echo '
-                <div class="col-6 col-md-4 col-lg-2 m-2">
-                    <div class="card h-100 border-0 bg-transparent brand-card" style="border-radius: 8px; border: 1px solid #e2e8f0 !important; transition: all 0.3s ease;">
-                        <div class="card-body text-center d-flex flex-column justify-content-center align-items-center py-4">
-                            <img src="assets/images/brands/' . $brand['file'] . '" alt="' . $brand['name'] . '" class="img-fluid mb-3" style="max-height: 50px; object-fit: contain;">
-                            <h6 class="mb-1" style="color: #2c3e50; font-family: \'Playfair Display\', serif;">' . $brand['name'] . '</h6>
-                            <small class="text-muted" style="font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase;">' . $brand['location'] . '</small>
+                <div class="col">
+                    <a href="watches.php?brand=' . urlencode($brand['name']) . '" class="text-decoration-none">
+                        <div class="card h-100 brand-card">
+                            <div class="brand-img-wrapper">
+                                <img src="assets/images/brands/' . $brand['file'] . '" alt="' . $brand['name'] . '" class="img-fluid brand-img">
+                            </div>
+                            <div class="brand-info">
+                                <h5 class="brand-name mb-1">' . $brand['name'] . '</h5>
+                                <small class="brand-location">' . $brand['location'] . '</small>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>';
             }
             ?>
         </div>
 
-        <div class="mb-5">
-            <a href="watches.php" class="btn btn-outline-theme px-4 py-2 text-uppercase" style="letter-spacing: 1px; font-size: 0.85rem;">Explore All Watches &rarr;</a>
+        <div class="my-5">
+            <a href="watches.php" class="btn-brand-explore">Explore All Watches &rarr;</a>
         </div>
 
-        <div class="text-start mb-4 mt-5">
-            <h4 style="color: #2c3e50; font-family: 'Playfair Display', serif;">Premium Fragrance Brands</h4>
+        <div class="text-start mb-4 mt-5 pt-3">
+            <h3 class="fw-bold m-0" style="color: #2b4968; font-family: 'Playfair Display', Georgia, serif; font-size: 1.85rem;">Premium Fragrance Brands</h3>
         </div>
 
-        <div class="row align-items-center justify-content-center g-4 mb-5">
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 mb-4 justify-content-center">
             <?php
             $fragranceBrands = [
                 ['file' => 'dior.jpg', 'name' => 'Dior', 'location' => 'PARIS, FRANCE'],
@@ -50,23 +52,27 @@
             ];
             foreach ($fragranceBrands as $brand) {
                 echo '
-                <div class="col-6 col-md-4 col-lg-2 m-2">
-                    <div class="card h-100 border-0 bg-transparent brand-card" style="border-radius: 8px; border: 1px solid #e2e8f0 !important; transition: all 0.3s ease;">
-                        <div class="card-body text-center d-flex flex-column justify-content-center align-items-center py-4">
-                            <img src="assets/images/brands/' . $brand['file'] . '" alt="' . $brand['name'] . '" class="img-fluid mb-3" style="max-height: 50px; object-fit: contain;">
-                            <h6 class="mb-1" style="color: #2c3e50; font-family: \'Playfair Display\', serif;">' . $brand['name'] . '</h6>
-                            <small class="text-muted" style="font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase;">' . $brand['location'] . '</small>
+                <div class="col">
+                    <a href="perfumes.php?brand=' . urlencode($brand['name']) . '" class="text-decoration-none">
+                        <div class="card h-100 brand-card">
+                            <div class="brand-img-wrapper">
+                                <img src="assets/images/brands/' . $brand['file'] . '" alt="' . $brand['name'] . '" class="img-fluid brand-img">
+                            </div>
+                            <div class="brand-info">
+                                <h5 class="brand-name mb-1">' . $brand['name'] . '</h5>
+                                <small class="brand-location">' . $brand['location'] . '</small>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>';
             }
             ?>
         </div>
 
-        <div class="mb-5">
-            <a href="perfumes.php" class="btn btn-outline-theme px-4 py-2 text-uppercase" style="letter-spacing: 1px; font-size: 0.85rem;">Explore All Fragrances &rarr;</a>
+        <div class="my-5">
+            <a href="perfumes.php" class="btn-brand-explore">Explore All Fragrances &rarr;</a>
         </div>
     </div>
 </section>
 
-<link rel="stylesheet" href="assets/css/featured-brands.css">
+<link rel="stylesheet" href="assets/css/featured-brands.css?v=<?php echo time(); ?>">

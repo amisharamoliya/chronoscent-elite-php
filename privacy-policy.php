@@ -5,7 +5,7 @@ require_once 'includes/header.php';
 <div class="container py-5 my-3">
     <div class="row justify-content-center">
         <div class="col-lg-10 col-xl-9">
-            <div class="card border-0 shadow-sm rounded-3">
+            <div class="card border-0 theme-card-shadow">
                 <div class="card-body p-4 p-md-5">
                     <h1 class="fw-bold mb-4" style="color: var(--primary-theme);">Privacy Policy</h1>
                     

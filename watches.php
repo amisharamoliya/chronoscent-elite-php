@@ -12,7 +12,7 @@ if ($sort == 'price_asc') $order_by = 'price ASC';
 if ($sort == 'price_desc') $order_by = 'price DESC';
 if ($sort == 'rating') $order_by = 'id DESC';
 
-$where_clauses = ["category = 'Watch'"];
+$where_clauses = ["(category = 'Watch' OR category IN (SELECT name FROM categories WHERE type = 'Watch') OR category = 'Classic' OR category = 'Sports')"];
 $params = [];
 
 if ($brand_filter) {
@@ -29,9 +29,13 @@ if ($gender_filter == 'Men') {
 }
 
 if ($style_filter == 'Classic') {
-    $where_clauses[] = "description LIKE '%Classic watch.%'";
+    $where_clauses[] = "(category = 'Classic' OR description LIKE '%Classic watch.%' OR name LIKE '%Classic%')";
 } elseif ($style_filter == 'Sports') {
-    $where_clauses[] = "description LIKE '%Sports watch.%'";
+    $where_clauses[] = "(category = 'Sports' OR description LIKE '%Sports watch.%')";
+} elseif (!empty($style_filter)) {
+    $where_clauses[] = "(category = ? OR description LIKE ?)";
+    $params[] = $style_filter;
+    $params[] = "%{$style_filter}%";
 }
 
 $where_sql = implode(' AND ', $where_clauses);
@@ -53,7 +57,8 @@ if (isset($_SESSION['user_id'])) {
 
 <style>
 body {
-    background-color: #fafafa;
+    background-color: #ffffff;
+    color: #000000;
     font-family: 'Inter', sans-serif;
 }
 .watches-header {
@@ -119,7 +124,7 @@ body {
     position: relative;
     border-radius: 8px;
     overflow: hidden;
-    background-color: #f8f8f8;
+    background-color: #ffffff;
     margin-bottom: 1rem;
     aspect-ratio: 1 / 1;
     display: flex;
@@ -161,6 +166,37 @@ body {
     font-weight: 600;
     color: #111;
     margin-top: auto;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.product-price .original-price {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: #888;
+    text-decoration: line-through;
+}
+.product-price .discounted-price {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #e63946;
+}
+.discount-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 10;
+    background: #e63946;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 6px rgba(230, 57, 70, 0.35);
+    line-height: 1.2;
+    pointer-events: none;
 }
 </style>
 
@@ -175,6 +211,12 @@ body {
                 <option value="Men" <?php echo $gender_filter == 'Men' ? 'selected' : ''; ?>>Men</option>
                 <option value="Women" <?php echo $gender_filter == 'Women' ? 'selected' : ''; ?>>Women</option>
                 <option value="Unisex" <?php echo $gender_filter == 'Unisex' ? 'selected' : ''; ?>>Unisex</option>
+            </select>
+
+            <select name="style" onchange="this.form.submit()">
+                <option value="">Category</option>
+                <option value="Classic" <?php echo $style_filter == 'Classic' ? 'selected' : ''; ?>>Classic</option>
+                <option value="Sports" <?php echo $style_filter == 'Sports' ? 'selected' : ''; ?>>Sports</option>
             </select>
 
             <select name="brand" onchange="this.form.submit()">
@@ -201,16 +243,25 @@ body {
                 $img = htmlspecialchars($p['image']);
                 $name = htmlspecialchars($p['name']);
                 $brand = htmlspecialchars($p['brand']);
-                $price = number_format($p['price'], 0);
+                $price = formatIndianNumber($p['price']);
                 $id = $p['id'];
                 $in_wishlist = in_array($id, $wishlist_product_ids);
                 $heart_icon = $in_wishlist ? 'bi-heart-fill' : 'bi-heart';
                 $heart_color = $in_wishlist ? '#dc3545' : '#666';
                 $wishlist_action = $in_wishlist ? 'remove' : 'add';
 
+                $has_discount = (!empty($p['discount_price']) && $p['discount_price'] > 0 && $p['discount_price'] < $p['price']);
+                $discount_badge = "";
+                if ($has_discount) {
+                    $price_html = "<span class='original-price'>₹" . formatIndianNumber($p['price']) . "</span><span class='discounted-price'>₹" . formatIndianNumber($p['discount_price']) . "</span>";
+                } else {
+                    $price_html = "<span>₹" . $price . "</span>";
+                }
+
                 echo "
                 <div class='product-card'>
                     <div class='product-image-wrapper'>
+                        {$discount_badge}
                         <a href='product-details.php?id={$id}' class='d-block w-100 h-100'>
                             <img src='{$img}' alt='{$name}' class='product-img'>
                         </a>
@@ -227,7 +278,7 @@ body {
                         <a href='product-details.php?id={$id}' class='text-decoration-none'>
                             <h3 class='product-title'>{$name}</h3>
                         </a>
-                        <div class='product-price'>$" . $price . "</div>
+                        <div class='product-price'>{$price_html}</div>
                     </div>
                 </div>";
             }

@@ -2,8 +2,8 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-require_once '../config/database.php';
-require_once '../includes/auth.php';
+require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../includes/auth.php';
 require_admin();
 
 if (isset($_GET['delete'])) {
@@ -30,66 +30,86 @@ $stmt = $pdo->query("SELECT r.*, u.name as user_name, p.name as product_name FRO
 $reviews = $stmt->fetchAll();
 ?>
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reviews - ChronoScent Elite Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css?v=2" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css?v=2">
-    <link rel="stylesheet" href="../assets/css/admin-reviews.css?v=2">
+    <link rel="stylesheet" href="../assets/css/admin-common.css?v=<?php echo time(); ?>">
 </head>
 <body>
-    <div class="d-flex">
-        <div class="sidebar" style="width: 250px;">
-            <h4 class="text-center mb-4 text-white fw-bold">Admin Panel</h4>
-            <a href="dashboard.php"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a>
-            <a href="products.php"><i class="bi bi-box me-2"></i> Products</a>
-            <a href="orders.php"><i class="bi bi-cart me-2"></i> Orders</a>
-            <a href="users.php"><i class="bi bi-people me-2"></i> Users</a>
-            <a href="reviews.php" class="active"><i class="bi bi-star me-2"></i> Reviews</a>
-            <a href="../index.php" target="_blank"><i class="bi bi-globe me-2"></i> View Site</a>
-            <a href="logout.php" class="text-danger mt-5"><i class="bi bi-box-arrow-right me-2"></i> Logout</a>
-        </div>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <?php include 'sidebar.php'; ?>
 
-        <div class="main-content flex-grow-1 bg-light">
-            <h2 class="mb-4">Review Management</h2>
-            <div class="card border-0 shadow-sm">
-                <div class="card-body p-0">
-                    <table class="table table-hover align-middle mb-0">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>Product</th>
-                                <th>User</th>
-                                <th>Rating</th>
-                                <th>Review</th>
-                                <th>Date</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($reviews as $rev): ?>
-                            <tr>
-                                <td><?php echo htmlspecialchars($rev['product_name']); ?></td>
-                                <td><?php echo htmlspecialchars($rev['user_name']); ?></td>
-                                <td>
-                                    <?php
-                                    for($i=1; $i<=5; $i++) echo $i <= $rev['rating'] ? '<i class="bi bi-star-fill text-warning"></i>' : '<i class="bi bi-star text-warning"></i>';
-                                    ?>
-                                </td>
-                                <td>
-                                    <strong><?php echo htmlspecialchars($rev['title']); ?></strong><br>
-                                    <small><?php echo htmlspecialchars($rev['message']); ?></small>
-                                </td>
-                                <td><?php echo date('M d, Y', strtotime($rev['created_at'])); ?></td>
-                                <td>
-                                    <a href="reviews.php?delete=<?php echo $rev['id']; ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete this review?');"><i class="bi bi-trash"></i></a>
-                                </td>
-                            </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
+        <!-- Main Wrapper -->
+        <div class="admin-main-wrapper">
+            <!-- Topbar -->
+            <?php include 'topbar.php'; ?>
+
+            <main class="admin-content">
+                <div class="purchases-card">
+                    <div class="purchases-header">
+                        <div>
+                            <h5 class="purchases-title">Customer Reviews</h5>
+                            <p class="purchases-count"><?= count($reviews); ?> reviews submitted</p>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="orders-table align-middle">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>CUSTOMER</th>
+                                    <th>PRODUCT</th>
+                                    <th>RATING</th>
+                                    <th>COMMENT</th>
+                                    <th>DATE</th>
+                                    <th class="text-end">ACTIONS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if (count($reviews) > 0): ?>
+                                    <?php foreach ($reviews as $r): ?>
+                                    <tr>
+                                        <td><span class="order-id-tag">#<?= $r['id']; ?></span></td>
+                                        <td><div class="customer-name"><?= htmlspecialchars($r['user_name']); ?></div></td>
+                                        <td><span class="fw-semibold text-dark"><?= htmlspecialchars($r['product_name']); ?></span></td>
+                                        <td>
+                                            <span class="badge bg-warning text-dark px-2 py-1 rounded-pill">
+                                                <i class="bi bi-star-fill text-dark me-1"></i><?= $r['rating']; ?>/5
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <?php if (!empty($r['title'])): ?>
+                                                <div class="fw-semibold text-dark small mb-1"><?= htmlspecialchars($r['title']); ?></div>
+                                            <?php endif; ?>
+                                            <small class="text-muted"><?= htmlspecialchars($r['message'] ?? $r['comment'] ?? ''); ?></small>
+                                        </td>
+                                        <td class="text-muted small"><?= date('M d, Y', strtotime($r['created_at'])); ?></td>
+                                        <td class="text-end">
+                                            <a href="reviews.php?delete=<?= $r['id']; ?>" class="btn btn-sm btn-action-delete" onclick="return confirm('Are you sure you want to delete this review?');" title="Delete Review">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <tr>
+                                        <td colspan="7" class="text-center py-5 text-muted">
+                                            <i class="bi bi-star fs-1 d-block mb-2 text-secondary"></i>
+                                            No reviews submitted yet.
+                                        </td>
+                                    </tr>
+                                <?php endif; ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
+            </main>
         </div>
     </div>
 </body>

@@ -1,0 +1,21 @@
+[2026-10-21 05:53:46] Sent to: amisharamoliya2007@gmail.com | Subject: Order Confirmation #INV-000027 | Body: Thank you for your purchase, Ramoliya Amishaben Nareshbhai! Your order has been placed successfully.
+[2026-10-21 05:59:25] Sent to: rajvi@gmail.com | Subject: Order Confirmation #INV-000028 | Body: Thank you for your purchase, rajvi maheta! Your order has been placed successfully.
+[2026-10-21 10:21:22] Sent to: dhruv5674@gmail.com | Subject: Order Confirmation #INV-000029 | Body: Thank you for your purchase, dhruv ramoliya! Your order has been placed successfully.
+[2026-10-21 11:03:06] Sent to: rajvi@gmail.com | Subject: Order Confirmation #INV-000030 | Body: Thank you for your purchase, rajvi maheta! Your order has been placed successfully.
+[2026-10-21 11:08:26] Sent to: rajvi@gmail.com | Subject: Order Confirmation #INV-000031 | Body: Thank you for your purchase, rajvi maheta! Your order has been placed successfully.
+[2026-10-21 11:16:46] Sent to: rajvi@gmail.com | Subject: Order Confirmation #INV-000032 | Body: Thank you for your purchase, rajvi maheta! Your order has been placed successfully.
+[2026-10-21 11:56:41] Sent to: dhruv5674@gmail.com | Subject: Your Order is Shipped! | Body: Hello dhruv ramoliya,
+
+Your order #INV-000029 has been marked as Shipped.
+Thank you for shopping with ChronoScent Elite!
+[2026-10-21 17:19:02] Sent to: hello@chronoscentelite.com | Subject: New Contact Inquiry from Test Customer: Inquiry about Rolex Submariner | Body: Customer Name: Test Customer
+Email: test@example.com
+Subject: Inquiry about Rolex Submariner
+Message: Hello, I would like to inquire about the availability of the Rolex Submariner Date model.
+[2026-10-21 17:24:19] Sent to: hello@chronoscentelite.com | Subject: New Contact Inquiry from dhruv ramoliya: product inquiry | Body: Customer Name: dhruv ramoliya
+Email: dhruv5674@gmail.com
+Subject: product inquiry
+Message: Hello, I am interested in your product. please provide more information.
+Thank You.
+[2026-10-22 15:57:19] Sent to: aman12@gmail.com | Subject: Order Confirmation #INV-000033 | Body: Thank you for your purchase, aman ramoliya! Your order has been placed successfully.
+[2026-10-23 15:41:22] Sent to: mahi@gmail.com | Subject: Order Confirmation #INV-000034 | Body: Thank you for your purchase, mahii! Your order has been placed successfully.

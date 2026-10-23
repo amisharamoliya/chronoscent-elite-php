@@ -13,20 +13,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
 
     if ($_POST['action'] == 'add') {
         $quantity = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 1;
-        if (isset($_SESSION['cart'][$product_id])) {
-            $_SESSION['cart'][$product_id] += $quantity;
-        } else {
-            $_SESSION['cart'][$product_id] = $quantity;
+        
+        $p_check = $pdo->prepare("SELECT stock FROM products WHERE id = ?");
+        $p_check->execute([$product_id]);
+        $stock = $p_check->fetchColumn();
+
+        if ($stock !== false && (int)$stock > 0) {
+            $current_qty = isset($_SESSION['cart'][$product_id]) ? $_SESSION['cart'][$product_id] : 0;
+            $new_qty = $current_qty + $quantity;
+            if ($new_qty > (int)$stock) {
+                $new_qty = (int)$stock;
+            }
+            $_SESSION['cart'][$product_id] = $new_qty;
         }
     } elseif ($_POST['action'] == 'update') {
         $quantity = (int)$_POST['quantity'];
         if ($quantity > 0) {
+            $p_check = $pdo->prepare("SELECT stock FROM products WHERE id = ?");
+            $p_check->execute([$product_id]);
+            $stock = $p_check->fetchColumn();
+
+            if ($stock !== false && $quantity > (int)$stock) {
+                $quantity = max(1, (int)$stock);
+            }
             $_SESSION['cart'][$product_id] = $quantity;
         } else {
             unset($_SESSION['cart'][$product_id]);
         }
     } elseif ($_POST['action'] == 'remove') {
         unset($_SESSION['cart'][$product_id]);
+    } elseif ($_POST['action'] == 'buy_now') {
+        $quantity = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 1;
+        $p_check = $pdo->prepare("SELECT stock FROM products WHERE id = ?");
+        $p_check->execute([$product_id]);
+        $stock = $p_check->fetchColumn();
+
+        if ($stock !== false && (int)$stock > 0) {
+            $_SESSION['cart'][$product_id] = min(max(1, $quantity), (int)$stock);
+            header("Location: checkout.php");
+            exit;
+        }
     }
 
     if (isset($_POST['is_ajax'])) {
@@ -59,7 +85,7 @@ require_once 'includes/header.php';
         <div class="text-center py-5">
             <i class="bi bi-cart-x display-1 text-muted mb-3 d-block"></i>
             <h4>Your cart is currently empty.</h4>
-            <a href="index.php" class="btn btn-theme btn-hover-transparent mt-3">Continue Shopping</a>
+            <a href="index.php" class="btn btn-outline-theme rounded-pill px-4 py-2 mt-3 shadow-sm">Continue Shopping</a>
         </div>
     <?php else: ?>
         <div class="row">
@@ -97,12 +123,12 @@ require_once 'includes/header.php';
                                         <div class="d-flex align-items-center">
                                             <img src="<?php echo htmlspecialchars($p['image']); ?>" alt="" style="width: 60px; height: 60px; object-fit: cover;" class="rounded me-3">
                                             <div>
-                                                <h6 class="mb-0 fw-bold text-white"><?php echo htmlspecialchars($p['name']); ?></h6>
-                                                <small class="text-white"><?php echo htmlspecialchars($p['brand']); ?></small>
+                                                <h6 class="mb-0 fw-bold text-dark"><?php echo htmlspecialchars($p['name']); ?></h6>
+                                                <small class="text-muted"><?php echo htmlspecialchars($p['brand']); ?></small>
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="py-3">$<?php echo number_format($price, 2); ?></td>
+                                    <td class="py-3">₹<?php echo formatIndianNumber($price); ?></td>
                                     <td class="py-3">
                                         <form action="cart.php" method="POST" class="d-flex align-items-center" style="max-width: 120px;">
                                             <input type="hidden" name="action" value="update">
@@ -110,7 +136,7 @@ require_once 'includes/header.php';
                                             <input type="number" name="quantity" class="form-control form-control-sm text-center me-2" value="<?php echo $quantity; ?>" min="1" max="<?php echo $p['stock']; ?>" onchange="this.form.submit()">
                                         </form>
                                     </td>
-                                    <td class="py-3 fw-bold">$<?php echo number_format($item_total, 2); ?></td>
+                                    <td class="py-3 fw-bold">₹<?php echo formatIndianNumber($item_total); ?></td>
                                     <td class="py-3 pe-4 text-end">
                                         <form action="cart.php" method="POST" class="d-inline">
                                             <input type="hidden" name="action" value="remove">
@@ -124,7 +150,7 @@ require_once 'includes/header.php';
                         </table>
                     </div>
                 </div>
-                <a href="index.php" class="btn btn-outline-theme"><i class="bi bi-arrow-left"></i> Continue Shopping</a>
+                <a href="index.php" class="btn btn-outline-theme rounded-pill px-4 py-2 shadow-sm"><i class="bi bi-arrow-left me-1"></i> Continue Shopping</a>
             </div>
 
             <div class="col-lg-4">
@@ -133,12 +159,12 @@ require_once 'includes/header.php';
                         <h4 class="fw-bold mb-4">Order Summary</h4>
                         <div class="d-flex justify-content-between mb-3">
                             <span class="text-muted">Subtotal</span>
-                            <span class="fw-bold">$<?php echo number_format($subtotal, 2); ?></span>
+                            <span class="fw-bold">₹<?php echo formatIndianNumber($subtotal); ?></span>
                         </div>
                         <?php if($total_discount > 0): ?>
                         <div class="d-flex justify-content-between mb-3">
                             <span class="text-muted">Discount Saved</span>
-                            <span class="text-success">-$<?php echo number_format($total_discount, 2); ?></span>
+                            <span class="text-success">-₹<?php echo formatIndianNumber($total_discount); ?></span>
                         </div>
                         <?php endif; ?>
                         <div class="d-flex justify-content-between mb-3">
@@ -148,9 +174,9 @@ require_once 'includes/header.php';
                         <hr>
                         <div class="d-flex justify-content-between mb-4">
                             <span class="fw-bold fs-5">Grand Total</span>
-                            <span class="fw-bold fs-5 text-theme" style="color: var(--primary-theme);">$<?php echo number_format($subtotal, 2); ?></span>
+                            <span class="fw-bold fs-5 text-theme" style="color: var(--primary-theme);">₹<?php echo formatIndianNumber($subtotal); ?></span>
                         </div>
-                        <a href="checkout.php" class="btn btn-theme btn-hover-transparent w-100 py-3 fw-bold text-uppercase tracking-wide">Proceed to Checkout</a>
+                        <a href="checkout.php" class="btn btn-outline-theme rounded-pill w-100 py-3 fw-bold text-uppercase tracking-wide shadow">Proceed to Checkout</a>
                     </div>
                 </div>
             </div>

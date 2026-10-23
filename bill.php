@@ -31,7 +31,12 @@ require_once 'includes/header.php';
     <div class="text-center mb-5">
         <i class="bi bi-check-circle-fill text-success display-1 mb-3"></i>
         <h1 class="fw-bold" style="color: var(--primary-theme);">Order Successful!</h1>
-        <p class="lead text-muted">Thank you for your purchase. Your order has been placed.</p>
+        <p class="lead text-muted mb-2">Thank you for your purchase. Your order has been placed.</p>
+        <div>
+            <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 rounded-pill" style="font-size: 0.9rem;">
+                <i class="bi bi-cloud-arrow-down-fill me-1"></i> Your PDF Invoice is downloading automatically...
+            </span>
+        </div>
     </div>
 
     <div class="row justify-content-center">
@@ -78,8 +83,8 @@ require_once 'includes/header.php';
                             <tr>
                                 <td class="py-3"><?php echo htmlspecialchars($item['name']); ?></td>
                                 <td class="text-center py-3"><?php echo $item['quantity']; ?></td>
-                                <td class="text-end py-3">$<?php echo number_format($item['price'], 2); ?></td>
-                                <td class="text-end py-3">$<?php echo number_format($item['price'] * $item['quantity'], 2); ?></td>
+                                <td class="text-end py-3">₹<?php echo formatIndianNumber($item['price']); ?></td>
+                                <td class="text-end py-3">₹<?php echo formatIndianNumber($item['price'] * $item['quantity']); ?></td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -90,18 +95,18 @@ require_once 'includes/header.php';
                         <div class="col-4">
                             <div class="d-flex justify-content-between mb-2">
                                 <span class="fw-bold">Subtotal:</span>
-                                <span>$<?php echo number_format($order['total_amount'] + $order['discount'], 2); ?></span>
+                                <span>₹<?php echo formatIndianNumber($order['total_amount'] + $order['discount']); ?></span>
                             </div>
                             <?php if($order['discount'] > 0): ?>
                             <div class="d-flex justify-content-between mb-2">
                                 <span class="fw-bold">Discount Saved:</span>
-                                <span class="text-success">-$<?php echo number_format($order['discount'], 2); ?></span>
+                                <span class="text-success">-₹<?php echo formatIndianNumber($order['discount']); ?></span>
                             </div>
                             <?php endif; ?>
                             <hr>
                             <div class="d-flex justify-content-between fs-5 fw-bold" style="color: var(--primary-theme);">
                                 <span>Total:</span>
-                                <span>$<?php echo number_format($order['total_amount'], 2); ?></span>
+                                <span>₹<?php echo formatIndianNumber($order['total_amount']); ?></span>
                             </div>
                         </div>
                     </div>
@@ -109,8 +114,8 @@ require_once 'includes/header.php';
             </div>
 
             <div class="text-center mt-4">
-                <a href="invoice.php?id=<?php echo $order_id; ?>" target="_blank" class="btn btn-outline-dark me-2"><i class="bi bi-file-earmark-pdf"></i> Download PDF Invoice</a>
-                <a href="review.php?product_id=<?php echo $items[0]['product_id']; ?>" class="btn btn-theme btn-hover-transparent">Leave a Review</a>
+                <a href="invoice.php?id=<?php echo $order_id; ?>" target="_blank" class="btn btn-outline-theme rounded-pill px-4 py-2 shadow-sm me-2"><i class="bi bi-file-earmark-pdf me-1"></i> Download PDF Invoice</a>
+                <a href="review.php?product_id=<?php echo $items[0]['product_id']; ?>" class="btn btn-outline-theme rounded-pill px-4 py-2 shadow-sm">Leave a Review</a>
             </div>
         </div>
     </div>
@@ -123,5 +128,16 @@ require_once 'includes/header.php';
     #invoice { position: absolute; left: 0; top: 0; width: 100%; box-shadow: none !important; }
 }
 </style>
+
+<script>
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        var iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = 'invoice.php?id=<?php echo $order_id; ?>';
+        document.body.appendChild(iframe);
+    }, 600);
+});
+</script>
 
 <?php require_once 'includes/footer.php'; ?>

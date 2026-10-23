@@ -35,7 +35,7 @@ $html = '
     <meta charset="utf-8">
     <title>Invoice #INV-' . str_pad($order_id, 6, "0", STR_PAD_LEFT) . '</title>
     <style>
-        body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; color: #333; }
+        body { font-family: "DejaVu Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; color: #333; }
         .invoice-box { max-width: 800px; margin: auto; padding: 30px; border: 1px solid #eee; box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }
         .details { width: 100%; margin-bottom: 30px; border-collapse: collapse; }
         .details td { padding: 5px; vertical-align: top; }
@@ -104,8 +104,8 @@ foreach ($items as $item) {
                 <tr>
                     <td>' . htmlspecialchars($item['name'] ?? '') . '</td>
                     <td class="text-center">' . $item['quantity'] . '</td>
-                    <td class="text-right">$' . number_format($item['price'], 2) . '</td>
-                    <td class="text-right">$' . number_format($item['price'] * $item['quantity'], 2) . '</td>
+                    <td class="text-right">₹' . formatIndianNumber($item['price']) . '</td>
+                    <td class="text-right">₹' . formatIndianNumber($item['price'] * $item['quantity']) . '</td>
                 </tr>';
 }
 
@@ -116,21 +116,21 @@ $html .= '
         <table class="totals">
             <tr>
                 <td class="label">Subtotal:</td>
-                <td class="value">$' . number_format(($order['total_amount'] ?? 0) + ($order['discount'] ?? 0), 2) . '</td>
+                <td class="value">₹' . formatIndianNumber(($order['total_amount'] ?? 0) + ($order['discount'] ?? 0)) . '</td>
             </tr>';
 
 if (($order['discount'] ?? 0) > 0) {
     $html .= '
             <tr>
                 <td class="label">Discount Saved:</td>
-                <td class="value text-success">-$' . number_format($order['discount'], 2) . '</td>
+                <td class="value text-success">-₹' . formatIndianNumber($order['discount']) . '</td>
             </tr>';
 }
 
 $html .= '
             <tr>
                 <td class="label grand-total">Total:</td>
-                <td class="value grand-total">$' . number_format($order['total_amount'] ?? 0, 2) . '</td>
+                <td class="value grand-total">₹' . formatIndianNumber($order['total_amount'] ?? 0) . '</td>
             </tr>
         </table>
     </div>

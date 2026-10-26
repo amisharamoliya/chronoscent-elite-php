@@ -14,8 +14,12 @@ $where_clauses = ["(category = 'Perfume' OR category IN (SELECT name FROM catego
 $params = [];
 
 if ($brand_filter) {
-    $where_clauses[] = "brand = ?";
-    $params[] = $brand_filter;
+    if ($brand_filter === 'YSL' || $brand_filter === 'Yves Saint Laurent') {
+        $where_clauses[] = "(brand = 'YSL' OR brand = 'Yves Saint Laurent')";
+    } else {
+        $where_clauses[] = "brand = ?";
+        $params[] = $brand_filter;
+    }
 }
 
 if ($gender_filter == 'Men') {
@@ -31,8 +35,18 @@ $stmt = $pdo->prepare("SELECT * FROM products WHERE $where_sql ORDER BY $order_b
 $stmt->execute($params);
 $products = $stmt->fetchAll();
 
-$brand_stmt = $pdo->query("SELECT DISTINCT brand FROM products WHERE (category = 'Perfume' OR category IN (SELECT name FROM categories WHERE type = 'Perfume') OR category = 'Modern' OR category = 'Signature') AND brand IS NOT NULL AND brand != ''");
+$brand_stmt = $pdo->query("
+    SELECT DISTINCT bname FROM (
+        SELECT name AS bname FROM brands WHERE category IN ('Perfume', 'Both')
+        UNION
+        SELECT brand AS bname FROM products WHERE (category = 'Perfume' OR category IN (SELECT name FROM categories WHERE type = 'Perfume') OR category = 'Modern' OR category = 'Signature') AND brand IS NOT NULL AND brand != ''
+    ) AS combined_brands 
+    ORDER BY bname ASC
+");
 $brands = $brand_stmt->fetchAll(PDO::FETCH_COLUMN);
+if (empty($brands)) {
+    $brands = ['Chanel', 'Creed', 'Dior', 'Versace', 'Yves Saint Laurent'];
+}
 
 $wishlist_product_ids = [];
 if (isset($_SESSION['user_id'])) {
@@ -204,7 +218,7 @@ body {
             <select name="brand" onchange="this.form.submit()">
                 <option value="">Brand</option>
                 <?php foreach($brands as $b): ?>
-                    <option value="<?php echo htmlspecialchars($b); ?>" <?php echo $brand_filter == $b ? 'selected' : ''; ?>>
+                    <option value="<?php echo htmlspecialchars($b); ?>" <?php echo ($brand_filter == $b || (($b == 'Yves Saint Laurent' || $b == 'YSL') && ($brand_filter == 'YSL' || $brand_filter == 'Yves Saint Laurent'))) ? 'selected' : ''; ?>>
                         <?php echo htmlspecialchars($b); ?>
                     </option>
                 <?php endforeach; ?>

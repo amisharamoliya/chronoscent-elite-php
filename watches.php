@@ -43,7 +43,18 @@ $stmt = $pdo->prepare("SELECT * FROM products WHERE $where_sql ORDER BY $order_b
 $stmt->execute($params);
 $products = $stmt->fetchAll();
 
-$brands = ['Rolex', 'Cartier', 'Hublot', 'Gucci', 'Omega'];
+$brand_stmt = $pdo->query("
+    SELECT DISTINCT bname FROM (
+        SELECT name AS bname FROM brands WHERE category IN ('Watch', 'Both')
+        UNION
+        SELECT brand AS bname FROM products WHERE (category = 'Watch' OR category IN (SELECT name FROM categories WHERE type = 'Watch') OR category = 'Classic' OR category = 'Sports') AND brand IS NOT NULL AND brand != ''
+    ) AS combined_brands 
+    ORDER BY bname ASC
+");
+$brands = $brand_stmt->fetchAll(PDO::FETCH_COLUMN);
+if (empty($brands)) {
+    $brands = ['Rolex', 'Cartier', 'Hublot', 'Gucci', 'Omega'];
+}
 
 $wishlist_product_ids = [];
 if (isset($_SESSION['user_id'])) {

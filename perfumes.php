@@ -4,6 +4,7 @@ require_once 'includes/header.php';
 $sort = isset($_GET['sort']) ? $_GET['sort'] : 'default';
 $brand_filter = isset($_GET['brand']) ? $_GET['brand'] : '';
 $gender_filter = isset($_GET['gender']) ? $_GET['gender'] : '';
+$profile_filter = isset($_GET['profile']) ? trim($_GET['profile']) : '';
 
 $order_by = 'created_at DESC';
 if ($sort == 'price_asc') $order_by = 'price ASC';
@@ -28,6 +29,12 @@ if ($gender_filter == 'Men') {
     $where_clauses[] = "(name LIKE '%Women%' OR description LIKE '%Women%' OR name LIKE '%Ladies%')";
 } elseif ($gender_filter == 'Unisex') {
     $where_clauses[] = "(name LIKE '%Unisex%' OR description LIKE '%Unisex%')";
+}
+
+if (!empty($profile_filter)) {
+    $where_clauses[] = "(profile = ? OR (profile IS NULL AND description LIKE ?))";
+    $params[] = $profile_filter;
+    $params[] = "%{$profile_filter}%";
 }
 
 $where_sql = implode(' AND ', $where_clauses);
@@ -215,6 +222,15 @@ body {
                 <option value="Unisex" <?php echo $gender_filter == 'Unisex' ? 'selected' : ''; ?>>Unisex</option>
             </select>
 
+            <select name="profile" onchange="this.form.submit()">
+                <option value="">Profile</option>
+                <option value="Floral" <?php echo $profile_filter == 'Floral' ? 'selected' : ''; ?>>Floral</option>
+                <option value="Woody" <?php echo $profile_filter == 'Woody' ? 'selected' : ''; ?>>Woody</option>
+                <option value="Fresh" <?php echo $profile_filter == 'Fresh' ? 'selected' : ''; ?>>Fresh</option>
+                <option value="Oriental" <?php echo $profile_filter == 'Oriental' ? 'selected' : ''; ?>>Oriental</option>
+                <option value="Fruity" <?php echo $profile_filter == 'Fruity' ? 'selected' : ''; ?>>Fruity</option>
+            </select>
+
             <select name="brand" onchange="this.form.submit()">
                 <option value="">Brand</option>
                 <?php foreach($brands as $b): ?>
@@ -239,6 +255,7 @@ body {
                 $img = htmlspecialchars($p['image']);
                 $name = htmlspecialchars($p['name']);
                 $brand = htmlspecialchars($p['brand']);
+                $profile = !empty($p['profile']) ? htmlspecialchars($p['profile']) : '';
                 $price = formatIndianNumber($p['price']);
                 $id = $p['id'];
                 $in_wishlist = in_array($id, $wishlist_product_ids);

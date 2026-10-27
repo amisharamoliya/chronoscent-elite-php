@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = trim($_POST['name']);
     $brand = trim($_POST['brand']);
     $category = $_POST['category'];
+    $profile = !empty($_POST['profile']) ? trim($_POST['profile']) : null;
     $description = trim($_POST['description']);
     $price = (float)$_POST['price'];
     $discount_price = !empty($_POST['discount_price']) ? (float)$_POST['discount_price'] : null;
@@ -42,8 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(empty($name) || empty($brand) || empty($category) || empty($price)) {
         $error = "Please fill all required fields.";
     } else {
-        $stmt = $pdo->prepare("INSERT INTO products (name, brand, category, description, price, discount_price, stock, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        if ($stmt->execute([$name, $brand, $category, $description, $price, $discount_price, $stock, $image_path])) {
+        $stmt = $pdo->prepare("INSERT INTO products (name, brand, category, profile, description, price, discount_price, stock, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        if ($stmt->execute([$name, $brand, $category, $profile, $description, $price, $discount_price, $stock, $image_path])) {
             $success = "Product added successfully.";
         } else {
             $error = "Error adding product.";
@@ -60,7 +61,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css?v=2" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css?v=2">
     <link rel="stylesheet" href="../assets/css/admin-common.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="../assets/css/admin-add-product.css?v=<?php echo time(); ?>">
 </head>
 <body>
     <div class="admin-layout">
@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
 
                         <div class="row mb-3">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label class="form-label">Category *</label>
                                 <?php
                                 $registered_categories = $pdo->query("SELECT name, type FROM categories ORDER BY name ASC")->fetchAll(PDO::FETCH_ASSOC);
@@ -115,6 +115,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     $registered_categories = [
                                         ['name' => 'Classic', 'type' => 'Watch'],
                                         ['name' => 'Sports', 'type' => 'Watch'],
+                                        ['name' => 'Diver', 'type' => 'Watch'],
+                                        ['name' => 'Dress', 'type' => 'Watch'],
                                         ['name' => 'Watch', 'type' => 'Watch'],
                                         ['name' => 'Perfume', 'type' => 'Perfume']
                                     ];
@@ -127,7 +129,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
+                                <label class="form-label">Fragrance Profile (Perfumes)</label>
+                                <select name="profile" class="form-select">
+                                    <option value="">None / Not Applicable</option>
+                                    <option value="Floral">Floral</option>
+                                    <option value="Woody">Woody</option>
+                                    <option value="Fresh">Fresh</option>
+                                    <option value="Oriental">Oriental</option>
+                                    <option value="Fruity">Fruity</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
                                 <label class="form-label">Stock *</label>
                                 <input type="number" name="stock" class="form-control" value="0" required>
                             </div>

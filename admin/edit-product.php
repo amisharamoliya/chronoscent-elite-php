@@ -28,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = trim($_POST['name']);
     $brand = trim($_POST['brand']);
     $category = $_POST['category'];
+    $profile = !empty($_POST['profile']) ? trim($_POST['profile']) : NULL;
     $description = trim($_POST['description']);
     $price = (float)$_POST['price'];
     $discount_price = empty($_POST['discount_price']) ? NULL : (float)$_POST['discount_price'];
@@ -37,8 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($name) || empty($brand) || empty($category) || empty($description) || $price <= 0) {
         $error = "Please fill in all required fields properly.";
     } else {
-        $update_stmt = $pdo->prepare("UPDATE products SET name=?, brand=?, category=?, description=?, price=?, discount_price=?, stock=?, image=? WHERE id=?");
-        if ($update_stmt->execute([$name, $brand, $category, $description, $price, $discount_price, $stock, $image_url, $id])) {
+        $update_stmt = $pdo->prepare("UPDATE products SET name=?, brand=?, category=?, profile=?, description=?, price=?, discount_price=?, stock=?, image=? WHERE id=?");
+        if ($update_stmt->execute([$name, $brand, $category, $profile, $description, $price, $discount_price, $stock, $image_url, $id])) {
             $success = "Product updated successfully!";
             $stmt = $pdo->prepare("SELECT * FROM products WHERE id = ?");
             $stmt->execute([$id]);
@@ -98,23 +99,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <?php endforeach; ?>
                                 </datalist>
                             </div>
-                            <div class="mb-3"><label class="form-label fw-semibold">Category</label>
-                                <?php
-                                $registered_categories = $pdo->query("SELECT name, type FROM categories ORDER BY name ASC")->fetchAll(PDO::FETCH_ASSOC);
-                                if (empty($registered_categories)) {
-                                    $registered_categories = [
-                                        ['name' => 'Classic', 'type' => 'Watch'],
-                                        ['name' => 'Sports', 'type' => 'Watch'],
-                                        ['name' => 'Watch', 'type' => 'Watch'],
-                                        ['name' => 'Perfume', 'type' => 'Perfume']
-                                    ];
-                                }
-                                ?>
-                                <select name="category" class="form-select">
-                                    <?php foreach ($registered_categories as $rc): ?>
-                                        <option value="<?= htmlspecialchars($rc['name']) ?>" <?php if($product['category'] == $rc['name']) echo 'selected'; ?>><?= htmlspecialchars($rc['name']) ?> (<?= htmlspecialchars($rc['type']) ?>)</option>
-                                    <?php endforeach; ?>
-                                </select>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Category</label>
+                                    <?php
+                                    $registered_categories = $pdo->query("SELECT name, type FROM categories ORDER BY name ASC")->fetchAll(PDO::FETCH_ASSOC);
+                                    if (empty($registered_categories)) {
+                                        $registered_categories = [
+                                            ['name' => 'Classic', 'type' => 'Watch'],
+                                            ['name' => 'Sports', 'type' => 'Watch'],
+                                            ['name' => 'Diver', 'type' => 'Watch'],
+                                            ['name' => 'Dress', 'type' => 'Watch'],
+                                            ['name' => 'Watch', 'type' => 'Watch'],
+                                            ['name' => 'Perfume', 'type' => 'Perfume']
+                                        ];
+                                    }
+                                    ?>
+                                    <select name="category" class="form-select">
+                                        <?php foreach ($registered_categories as $rc): ?>
+                                            <option value="<?= htmlspecialchars($rc['name']) ?>" <?php if($product['category'] == $rc['name']) echo 'selected'; ?>><?= htmlspecialchars($rc['name']) ?> (<?= htmlspecialchars($rc['type']) ?>)</option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Fragrance Profile (For Perfumes)</label>
+                                    <select name="profile" class="form-select">
+                                        <option value="">None / Not Applicable</option>
+                                        <?php foreach (['Floral', 'Woody', 'Fresh', 'Oriental', 'Fruity'] as $prof): ?>
+                                            <option value="<?= $prof ?>" <?= (!empty($product['profile']) && $product['profile'] == $prof) ? 'selected' : '' ?>><?= $prof ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
                             </div>
                             <div class="mb-3"><label class="form-label fw-semibold">Description</label><textarea name="description" class="form-control" rows="3" required><?= htmlspecialchars($product['description']); ?></textarea></div>
                             <div class="row mb-3">

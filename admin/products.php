@@ -16,7 +16,11 @@ if ($category_filter !== '') {
     if ($category_filter === 'Classic') {
         $where[] = "(category = 'Classic' OR description LIKE '%Classic watch.%' OR name LIKE '%Classic%')";
     } elseif ($category_filter === 'Sports') {
-        $where[] = "(category = 'Sports' OR description LIKE '%Sports watch.%' OR name LIKE '%Seamaster%' OR name LIKE '%Big Bang%' OR name LIKE '%Chronograph%')";
+        $where[] = "(category = 'Sports' OR description LIKE '%Sports watch.%' OR name LIKE '%Big Bang%' OR name LIKE '%Chronograph%')";
+    } elseif ($category_filter === 'Diver') {
+        $where[] = "(category = 'Diver' OR description LIKE '%Diver watch.%' OR description LIKE '%diving%')";
+    } elseif ($category_filter === 'Dress') {
+        $where[] = "(category = 'Dress' OR description LIKE '%Dress watch.%' OR name LIKE '%Tank%')";
     } elseif ($category_filter === 'Modern') {
         $where[] = "(category = 'Modern' OR description LIKE '%Modern%' OR description LIKE '%Contemporary%')";
     } elseif ($category_filter === 'Signature') {
@@ -192,6 +196,9 @@ $total_all_products = (int)$pdo->query("SELECT COUNT(*) FROM products")->fetchCo
                                             <a href="products.php?category=<?= urlencode($p['category']); ?>" class="text-decoration-none">
                                                 <span class="<?= $pill_class ?>"><?= htmlspecialchars($p['category']); ?></span>
                                             </a>
+                                            <?php if (!empty($p['profile'])): ?>
+                                                <div class="mt-1"><span class="badge bg-light text-secondary border" style="font-size: 0.68rem; font-weight: 500;"><?= htmlspecialchars($p['profile']); ?></span></div>
+                                            <?php endif; ?>
                                         </td>
                                         <td>
                                             <span class="amount-text">₹<?= formatIndianNumber($p['price']); ?></span>

@@ -26,8 +26,8 @@ if (isset($_SESSION['user_id']) && isset($pdo)) {
     <div class="collapse navbar-collapse" id="navbarNav">
       <?php
       $current_page = basename($_SERVER['PHP_SELF']);
-      $is_watch_active = ($current_page == 'watches.php' || ($current_page == 'product-details.php' && isset($product) && strtolower($product['category']) == 'watch'));
-      $is_fragrance_active = ($current_page == 'perfumes.php' || ($current_page == 'product-details.php' && isset($product) && strtolower($product['category']) == 'perfume'));
+      $is_watch_active = ($current_page == 'watches.php' || ($current_page == 'product-details.php' && isset($product) && (in_array($product['category'], ['Watch', 'Classic', 'Sports', 'Diver', 'Dress']) || (isset($cat_type) && $cat_type === 'Watch'))));
+      $is_fragrance_active = ($current_page == 'perfumes.php' || ($current_page == 'product-details.php' && isset($product) && (in_array($product['category'], ['Perfume', 'Modern', 'Signature']) || (isset($cat_type) && $cat_type === 'Perfume'))));
       ?>
       <ul class="navbar-nav mx-auto">
         <li class="nav-item"><a class="nav-link <?php echo $current_page == 'index.php' ? 'active' : ''; ?>" href="index.php">Home</a></li>

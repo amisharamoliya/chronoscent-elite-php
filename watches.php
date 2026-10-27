@@ -12,7 +12,7 @@ if ($sort == 'price_asc') $order_by = 'price ASC';
 if ($sort == 'price_desc') $order_by = 'price DESC';
 if ($sort == 'rating') $order_by = 'id DESC';
 
-$where_clauses = ["(category = 'Watch' OR category IN (SELECT name FROM categories WHERE type = 'Watch') OR category = 'Classic' OR category = 'Sports')"];
+$where_clauses = ["(category = 'Watch' OR category IN (SELECT name FROM categories WHERE type = 'Watch') OR category IN ('Classic', 'Sports', 'Diver', 'Dress'))"];
 $params = [];
 
 if ($brand_filter) {
@@ -32,6 +32,10 @@ if ($style_filter == 'Classic') {
     $where_clauses[] = "(category = 'Classic' OR description LIKE '%Classic watch.%' OR name LIKE '%Classic%')";
 } elseif ($style_filter == 'Sports') {
     $where_clauses[] = "(category = 'Sports' OR description LIKE '%Sports watch.%')";
+} elseif ($style_filter == 'Diver') {
+    $where_clauses[] = "(category = 'Diver' OR description LIKE '%Diver watch.%' OR description LIKE '%diving watch%')";
+} elseif ($style_filter == 'Dress') {
+    $where_clauses[] = "(category = 'Dress' OR description LIKE '%Dress watch.%' OR name LIKE '%Tank%')";
 } elseif (!empty($style_filter)) {
     $where_clauses[] = "(category = ? OR description LIKE ?)";
     $params[] = $style_filter;
@@ -47,7 +51,7 @@ $brand_stmt = $pdo->query("
     SELECT DISTINCT bname FROM (
         SELECT name AS bname FROM brands WHERE category IN ('Watch', 'Both')
         UNION
-        SELECT brand AS bname FROM products WHERE (category = 'Watch' OR category IN (SELECT name FROM categories WHERE type = 'Watch') OR category = 'Classic' OR category = 'Sports') AND brand IS NOT NULL AND brand != ''
+        SELECT brand AS bname FROM products WHERE (category = 'Watch' OR category IN (SELECT name FROM categories WHERE type = 'Watch') OR category IN ('Classic', 'Sports', 'Diver', 'Dress')) AND brand IS NOT NULL AND brand != ''
     ) AS combined_brands 
     ORDER BY bname ASC
 ");
@@ -228,6 +232,8 @@ body {
                 <option value="">Category</option>
                 <option value="Classic" <?php echo $style_filter == 'Classic' ? 'selected' : ''; ?>>Classic</option>
                 <option value="Sports" <?php echo $style_filter == 'Sports' ? 'selected' : ''; ?>>Sports</option>
+                <option value="Diver" <?php echo $style_filter == 'Diver' ? 'selected' : ''; ?>>Diver</option>
+                <option value="Dress" <?php echo $style_filter == 'Dress' ? 'selected' : ''; ?>>Dress</option>
             </select>
 
             <select name="brand" onchange="this.form.submit()">
@@ -254,6 +260,7 @@ body {
                 $img = htmlspecialchars($p['image']);
                 $name = htmlspecialchars($p['name']);
                 $brand = htmlspecialchars($p['brand']);
+                $category = htmlspecialchars($p['category']);
                 $price = formatIndianNumber($p['price']);
                 $id = $p['id'];
                 $in_wishlist = in_array($id, $wishlist_product_ids);

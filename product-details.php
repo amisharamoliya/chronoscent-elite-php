@@ -89,7 +89,9 @@ if ($is_perfume_cat) {
 }
 
 // 3. Profile Detection
-if ($is_perfume_cat) {
+if (!empty($product['profile'])) {
+    $profile = $product['profile'];
+} elseif ($is_perfume_cat) {
     if (stripos($name, 'Pour Monsieur') !== false) {
         $profile = 'Woody';
     } elseif (stripos($desc, 'woody') !== false || stripos($name, 'Wood') !== false || stripos($name, 'Bleu de Chanel') !== false) {
@@ -97,22 +99,22 @@ if ($is_perfume_cat) {
     } elseif (stripos($desc, 'floral-fruity') !== false || stripos($desc, 'floral') !== false || stripos($name, 'Bouquet') !== false || stripos($name, 'Crystal') !== false) {
         $profile = 'Floral';
     } elseif (stripos($desc, 'aquatic') !== false || stripos($desc, 'fresh') !== false || stripos($name, 'Water') !== false) {
-        $profile = 'Fresh Aquatic';
+        $profile = 'Fresh';
     } elseif (stripos($desc, 'spicy') !== false || stripos($desc, 'oriental') !== false) {
-        $profile = 'Spicy Oriental';
-    } elseif (stripos($desc, 'citrus') !== false) {
-        $profile = 'Citrus Fresh';
-    } elseif (stripos($desc, 'sensual') !== false || stripos($desc, 'passionate') !== false) {
-        $profile = 'Sensual Amber';
+        $profile = 'Oriental';
+    } elseif (stripos($desc, 'fruity') !== false) {
+        $profile = 'Fruity';
     } else {
-        $profile = 'Woody Aromatic';
+        $profile = 'Fresh';
     }
 } else {
     // Watches
-    if (stripos($desc, 'Sports watch') !== false || stripos($name, 'Seamaster') !== false || stripos($name, 'Big Bang') !== false || stripos($name, 'Chronograph') !== false) {
+    if ($cat === 'Diver' || stripos($desc, 'Diver watch') !== false || stripos($desc, 'diving') !== false) {
+        $profile = 'Diver';
+    } elseif ($cat === 'Dress' || stripos($desc, 'Dress watch') !== false) {
+        $profile = 'Dress';
+    } elseif ($cat === 'Sports' || stripos($desc, 'Sports watch') !== false || stripos($name, 'Big Bang') !== false || stripos($name, 'Chronograph') !== false) {
         $profile = 'Sports';
-    } elseif (stripos($desc, 'Classic watch') !== false || stripos($name, 'Classic') !== false || stripos($name, 'Tank') !== false || stripos($name, 'Ballon') !== false) {
-        $profile = 'Classic';
     } else {
         $profile = 'Classic';
     }
@@ -122,7 +124,11 @@ if ($is_perfume_cat) {
 if (!empty($cat) && !in_array($cat, ['Watch', 'Perfume'])) {
     $category_style = $cat;
 } elseif (!$is_perfume_cat) {
-    if (stripos($desc, 'Sports') !== false || stripos($name, 'Chronograph') !== false || stripos($name, 'Seamaster') !== false || stripos($name, 'Big Bang') !== false) {
+    if (stripos($desc, 'Diver watch') !== false || stripos($desc, 'diving') !== false || stripos($name, 'Seamaster') !== false) {
+        $category_style = 'Diver';
+    } elseif (stripos($desc, 'Dress watch') !== false || stripos($name, 'Tank') !== false || stripos($name, 'Baignoire') !== false) {
+        $category_style = 'Dress';
+    } elseif (stripos($desc, 'Sports') !== false || stripos($name, 'Chronograph') !== false || stripos($name, 'Big Bang') !== false) {
         $category_style = 'Sports';
     } else {
         $category_style = 'Classic';
@@ -436,8 +442,9 @@ body {
     <div class="container">
         <!-- Back Link -->
         <?php
-        $backLink = strtolower($product['category']) == 'watch' ? 'watches.php' : 'perfumes.php';
-        $backText = $product['category'] == 'Watch' ? 'Watches' : 'Perfumes';
+        $is_watch = (strtolower($product['category']) == 'watch' || in_array($product['category'], ['Classic', 'Sports', 'Diver', 'Dress']) || $cat_type === 'Watch');
+        $backLink = $is_watch ? 'watches.php' : 'perfumes.php';
+        $backText = $is_watch ? 'Watches' : 'Perfumes';
         ?>
         <div class="mb-4">
             <a href="<?php echo $backLink; ?>" class="btn btn-outline-theme btn-sm rounded-pill px-4 py-2 shadow-sm">

@@ -12,10 +12,10 @@ if ($q !== '') {
         $searchCategory = 'Perfume';
     }
 
-    $stmt = $pdo->prepare("SELECT * FROM products WHERE name LIKE ? OR brand LIKE ? OR category LIKE ?");
+    $stmt = $pdo->prepare("SELECT * FROM products WHERE name LIKE ? OR brand LIKE ? OR category LIKE ? OR profile LIKE ? OR description LIKE ?");
     $searchTerm = "%$q%";
     $categoryTerm = "%$searchCategory%";
-    $stmt->execute([$searchTerm, $searchTerm, $categoryTerm]);
+    $stmt->execute([$searchTerm, $searchTerm, $categoryTerm, $searchTerm, $searchTerm]);
     $products = $stmt->fetchAll();
 }
 ?>

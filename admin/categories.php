@@ -56,6 +56,10 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') == 'POST' && isset($_POST['add_new_catego
                 $icon = 'bi-award';
             } elseif (stripos($name, 'sport') !== false) {
                 $icon = 'bi-speedometer2';
+            } elseif (stripos($name, 'diver') !== false) {
+                $icon = 'bi-water';
+            } elseif (stripos($name, 'dress') !== false) {
+                $icon = 'bi-suit-club';
             } elseif (stripos($name, 'modern') !== false || stripos($name, 'lux') !== false) {
                 $icon = 'bi-gem';
             } elseif (stripos($name, 'sign') !== false) {
@@ -173,10 +177,17 @@ $cat_query = "
         p.category = c.name 
         OR (c.name = 'Classic' AND (p.category = 'Classic' OR p.description LIKE '%Classic watch.%' OR p.name LIKE '%Classic%'))
         OR (c.name = 'Sports' AND (p.category = 'Sports' OR p.description LIKE '%Sports watch.%'))
+        OR (c.name = 'Diver' AND (p.category = 'Diver' OR p.description LIKE '%Diver watch.%' OR p.description LIKE '%diving%'))
+        OR (c.name = 'Dress' AND (p.category = 'Dress' OR p.description LIKE '%Dress watch.%' OR p.name LIKE '%Tank%'))
         OR (c.name = 'Modern' AND (p.category = 'Modern' OR p.description LIKE '%Modern%' OR p.description LIKE '%Contemporary%'))
         OR (c.name = 'Signature' AND (p.category = 'Signature' OR (p.category = 'Perfume' AND p.name LIKE '%Aventus%')))
-        OR (c.name = 'Watch' AND p.category = 'Watch')
-        OR (c.name = 'Perfume' AND p.category = 'Perfume')
+        OR (c.name = 'Floral' AND (p.profile = 'Floral' OR p.category = 'Floral'))
+        OR (c.name = 'Woody' AND (p.profile = 'Woody' OR p.category = 'Woody'))
+        OR (c.name = 'Fresh' AND (p.profile = 'Fresh' OR p.category = 'Fresh'))
+        OR (c.name = 'Oriental' AND (p.profile = 'Oriental' OR p.category = 'Oriental'))
+        OR (c.name = 'Fruity' AND (p.profile = 'Fruity' OR p.category = 'Fruity'))
+        OR (c.name = 'Watch' AND (p.category = 'Watch' OR p.category IN ('Classic', 'Sports', 'Diver', 'Dress')))
+        OR (c.name = 'Perfume' AND (p.category = 'Perfume' OR p.category IN ('Modern', 'Signature', 'Floral', 'Woody', 'Fresh', 'Oriental', 'Fruity') OR p.profile IS NOT NULL))
     )
     GROUP BY c.id, c.name, c.type, c.description, c.image, c.icon, c.created_at
     ORDER BY c.name ASC
@@ -347,10 +358,10 @@ foreach ($categories_list as $c) {
                                     
                                     if ($cat['type'] == 'Watch') {
                                         $type_badge = '<span class="badge category-badge-watch px-2 py-1 rounded-pill"><i class="bi bi-clock me-1"></i>Watch</span>';
-                                        $boutique_link = "../watches.php";
+                                        $boutique_link = in_array($cname, ['Classic', 'Sports', 'Diver', 'Dress']) ? "../watches.php?style=" . urlencode($cname) : "../watches.php";
                                     } elseif ($cat['type'] == 'Perfume') {
                                         $type_badge = '<span class="badge category-badge-perfume px-2 py-1 rounded-pill"><i class="bi bi-flower1 me-1"></i>Perfume</span>';
-                                        $boutique_link = "../perfumes.php";
+                                        $boutique_link = in_array($cname, ['Floral', 'Woody', 'Fresh', 'Oriental', 'Fruity']) ? "../perfumes.php?profile=" . urlencode($cname) : "../perfumes.php";
                                     } else {
                                         $type_badge = '<span class="badge category-badge-general px-2 py-1 rounded-pill"><i class="bi bi-tag me-1"></i>' . htmlspecialchars($cat['type']) . '</span>';
                                         $boutique_link = "../index.php";

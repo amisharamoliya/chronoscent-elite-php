@@ -56,7 +56,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') == 'POST' && isset($_POST['delete_order']
 
 // Fetch Live Statistics
 $total_products = (int)$pdo->query("SELECT COUNT(*) FROM products")->fetchColumn();
-$watch_count = (int)$pdo->query("SELECT COUNT(*) FROM products WHERE category = 'Watch' OR category IN (SELECT name FROM categories WHERE type = 'Watch') OR category = 'Classic' OR category = 'Sports'")->fetchColumn();
+$watch_count = (int)$pdo->query("SELECT COUNT(*) FROM products WHERE category = 'Watch' OR category IN (SELECT name FROM categories WHERE type = 'Watch') OR category IN ('Classic', 'Sports', 'Diver', 'Dress')")->fetchColumn();
 $scent_count = (int)$pdo->query("SELECT COUNT(*) FROM products WHERE category = 'Perfume' OR category IN (SELECT name FROM categories WHERE type = 'Perfume') OR category = 'Modern' OR category = 'Signature'")->fetchColumn();
 
 $total_orders = (int)$pdo->query("SELECT COUNT(*) FROM orders")->fetchColumn();

@@ -37,13 +37,8 @@ if (isset($_POST['place_order'])) {
     $city = trim($_POST['city'] ?? '');
     $state = trim($_POST['state'] ?? '');
     $pincode = trim($_POST['pincode'] ?? '');
-    $payment_method = $_POST['payment_method'] ?? 'Cash on Delivery';
-
-    if ($payment_method == 'Online Payment (Demo)') {
-        $status = 'Confirmed';
-    } else {
-        $status = 'Pending';
-    }
+    $payment_method = 'Cash on Delivery';
+    $status = 'Pending';
 
     // Verify stock availability for all items in cart before proceeding
     $stock_error = '';
@@ -176,13 +171,9 @@ require_once 'includes/header.php';
                         </div>
 
                         <h5 class="fw-bold mb-3 mt-4">Payment Method</h5>
-                        <div class="form-check mb-2">
+                        <div class="form-check mb-4">
                             <input class="form-check-input" type="radio" name="payment_method" value="Cash on Delivery" checked>
                             <label class="form-check-label">Cash on Delivery (COD)</label>
-                        </div>
-                        <div class="form-check mb-4">
-                            <input class="form-check-input" type="radio" name="payment_method" value="Online Payment (Demo)">
-                            <label class="form-check-label">Online Payment (Demo)</label>
                         </div>
                         <input type="hidden" name="place_order" value="1">
 
